@@ -6,5 +6,5 @@ tmp/
 *.recommenders
 *.class
 
-/build/
-/dist/
+*/build/
+*/dist/
