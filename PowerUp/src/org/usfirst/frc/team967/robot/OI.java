@@ -1,42 +1,133 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package org.usfirst.frc.team967.robot;
 
-/**
- * This class is the glue that binds the controls on the physical operator
- * interface to the commands and command groups that allow control of the robot.
- */
+import org.usfirst.frc.team967.robot.commands.*;
+
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class OI {
-	//// CREATING BUTTONS
-	// One type of button is a joystick button which is any button on a
-	//// joystick.
-	// You create one by telling it which joystick it's on and which button
-	// number it is.
-	// Joystick stick = new Joystick(port);
-	// Button button = new JoystickButton(stick, buttonNumber);
-
-	// There are a few additional built in buttons you can use. Additionally,
-	// by subclassing Button you can create custom triggers and bind those to
-	// commands the same as any other Button.
-
-	//// TRIGGERING COMMANDS WITH BUTTONS
-	// Once you have a button, it's trivial to bind it to a button in one of
-	// three ways:
-
-	// Start the command when the button is pressed and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenPressed(new ExampleCommand());
-
-	// Run the command while the button is being held down and interrupt it once
-	// the button is released.
-	// button.whileHeld(new ExampleCommand());
-
-	// Start the command when the button is released and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenReleased(new ExampleCommand());
+	private Joystick xbox0 = new Joystick(0);
+	private Joystick xbox1 = new Joystick(1);
+	
+	public AxisButton xbox0_lT = new AxisButton(xbox0, 2, .75, 1);
+    public AxisButton xbox0_rT = new AxisButton(xbox0, 3, .75, 1);
+    
+    public POVButton xbox0povC 	= new POVButton(xbox0, 0, -1);
+    public POVButton xbox0povN 	= new POVButton(xbox0, 0, 0);
+    public POVButton xbox0povNE = new POVButton(xbox0, 0, 45);
+    public POVButton xbox0povE 	= new POVButton(xbox0, 0, 90);
+    public POVButton xbox0povSE = new POVButton(xbox0, 0, 135);
+    public POVButton xbox0povS 	= new POVButton(xbox0, 0, 180);
+    public POVButton xbox0povSW = new POVButton(xbox0, 0, 225);
+    public POVButton xbox0povW 	= new POVButton(xbox0, 0, 270);
+    public POVButton xbox0povNW = new POVButton(xbox0, 0, 315);
+    
+    public AxisButton xbox1_lT = new AxisButton(xbox1, 2, .75, 1);
+    public AxisButton xbox1_rT = new AxisButton(xbox1, 3, .75, 1);
+    
+    public POVButton xbox1povC 	= new POVButton(xbox1, 0, -1);
+    public POVButton xbox1povN 	= new POVButton(xbox1, 0, 0);
+    public POVButton xbox1povNE = new POVButton(xbox1, 0, 45);
+    public POVButton xbox1povE 	= new POVButton(xbox1, 0, 90);
+    public POVButton xbox1povSE = new POVButton(xbox1, 0, 135);
+    public POVButton xbox1povS 	= new POVButton(xbox1, 0, 180);
+    public POVButton xbox1povSW = new POVButton(xbox1, 0, 225);
+    public POVButton xbox1povW 	= new POVButton(xbox1, 0, 270);
+    public POVButton xbox1povNW = new POVButton(xbox1, 0, 315);
+	
+	public OI() {
+		// Setting up the variables to the buttons on controller 0
+    	JoystickButton xbox0_a = new JoystickButton(xbox0, 1);
+    	JoystickButton xbox0_b = new JoystickButton(xbox0, 2);
+    	JoystickButton xbox0_x = new JoystickButton(xbox0, 3);
+    	JoystickButton xbox0_y = new JoystickButton(xbox0, 4);
+    	JoystickButton xbox0_lb = new JoystickButton(xbox0, 5);
+    	JoystickButton xbox0_rb = new JoystickButton(xbox0, 6);
+    	JoystickButton xbox0_back = new JoystickButton(xbox0, 7);
+    	JoystickButton xbox0_start = new JoystickButton(xbox0, 8);
+    	JoystickButton xbox0_leftStickButton = new JoystickButton(xbox0, 9);
+    	JoystickButton xbox0_rightStickButton = new JoystickButton(xbox0, 10);
+		
+		// Setting up the variables to the buttons on controller 1
+    	JoystickButton xbox1_a = new JoystickButton(xbox1, 1);
+    	JoystickButton xbox1_b = new JoystickButton(xbox1, 2);
+    	JoystickButton xbox1_x = new JoystickButton(xbox1, 3);
+    	JoystickButton xbox1_y = new JoystickButton(xbox1, 4);
+    	JoystickButton xbox1_lb = new JoystickButton(xbox1, 5);
+    	JoystickButton xbox1_rb = new JoystickButton(xbox1, 6);
+    	JoystickButton xbox1_back = new JoystickButton(xbox1, 7);
+    	JoystickButton xbox1_start = new JoystickButton(xbox1, 8);
+    	JoystickButton xbox1_leftStickButton = new JoystickButton(xbox1, 9);
+    	JoystickButton xbox1_rightStickButton = new JoystickButton(xbox1, 10);
+		
+    	//Setting the button variables to the commands for controller number 0
+//    	xbox0povN.whenPressed();
+//    	xbox0povE.whenPressed();
+//    	xbox0povS.whenPressed();
+//    	xbox0povW.whenPressed();
+//     	xbox0_lT.whenPressed();
+//     	xbox0_lT.whenReleased();
+//     	xbox0_rT.whenPressed();
+//     	xbox0_rT.whenReleased();
+//    	xbox0_a.whenPressed();
+//    	xbox0_a.whenReleased();
+//    	xbox0_b.whenPressed();
+//    	xbox0_b.whenPressed();
+//    	xbox0_b.whenReleased();
+//    	xbox0_x.whenPressed();
+//    	xbox0_x.whenReleased();
+//    	xbox0_y.whenPressed();
+//    	xbox0_y.whenReleased();
+//     	xbox0_lb.whenPressed();
+//    	xbox0_rb.whenPressed();
+//    	xbox0_rb.whenReleased();
+//    	xbox0_back.whenPressed();
+//    	xbox0_back.whenReleased();
+//    	xbox0_start.whenPressed();
+//    	xbox0_start.whenReleased();
+//    	xbox0_leftStickButton.whenPressed();
+//    	xbox0_rightStickButton.whenPressed();
+    	
+    	//Setting the button variables to the commands for controller number 1
+//    	xbox1povN.whenPressed();
+//    	xbox1povE.whenPressed();
+//    	xbox1povS.whenPressed();
+//    	xbox1povW.whenPressed();
+//     	xbox1_lT.whenPressed();
+//     	xbox1_lT.whenReleased();
+//     	xbox1_rT.whenPressed();
+//     	xbox1_rT.whenReleased();
+//    	xbox1_a.whenPressed();
+//    	xbox1_a.whenReleased();
+//    	xbox1_b.whenPressed();
+//    	xbox1_b.whenPressed();
+//    	xbox1_b.whenReleased();
+//    	xbox1_x.whenPressed();
+//    	xbox1_x.whenReleased();
+//    	xbox1_y.whenPressed();
+//    	xbox1_y.whenReleased();
+//     	xbox1_lb.whenPressed();
+//    	xbox1_rb.whenPressed();
+//    	xbox1_rb.whenReleased();
+//    	xbox1_back.whenPressed();
+//    	xbox1_back.whenReleased();
+//    	xbox1_start.whenPressed();
+//    	xbox1_start.whenReleased();
+//    	xbox1_leftStickButton.whenPressed();
+//    	xbox1_rightStickButton.whenPressed(); 	
+	}
+	
+	public void log(){
+    	
+    }
+	
+	public Joystick getXbox0() {
+    	return xbox1;
+    }
+    
+    public Joystick getXbox1() {
+    	return xbox1;
+    }
+	
 }
