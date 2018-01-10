@@ -6,7 +6,10 @@ import org.usfirst.frc.team967.robot.RobotConstraints;
 import org.usfirst.frc.team967.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.SPI;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -14,6 +17,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class DriveBaseSubsystem extends Subsystem {
+	
+	private AHRS gyro;
 	
 	private WPI_TalonSRX driveLeftLead;
 	private WPI_TalonSRX driveLeftFollow;
@@ -138,6 +143,16 @@ public class DriveBaseSubsystem extends Subsystem {
 		driveLeftFollow.follow(driveLeftLead);
 		driveRightFollow.follow(driveRightLead);
 		
+		try { 
+			 gyro = new AHRS(SPI.Port.kMXP); // setting the navx to the mxp port 
+	     } 
+		 catch (RuntimeException ex )  // catching if an error was called.
+		 {
+			 DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true); // sending a message to the driver station telling that the navx is not working.
+	     }
+		
+		gyro.zeroYaw();
+		
 				
 	}
     
@@ -148,21 +163,21 @@ public class DriveBaseSubsystem extends Subsystem {
     }
     
     public void arcadeDrive(double yAxis, double xAxis) {
-    //square the values for better control at low speeds
-    yAxis = yAxis*Math.abs(yAxis);
-    xAxis = xAxis*Math.abs(xAxis);
+    	//square the values for better control at low speeds
+    	yAxis = yAxis*Math.abs(yAxis);
+    	xAxis = xAxis*Math.abs(xAxis);
     
-	if((yAxis< deadBand) && (yAxis > -deadBand)){ yAxis=0;}
-    if((xAxis< deadBand) && (xAxis > -deadBand)){ xAxis=0;}
-    double L = yAxis + xAxis;
-    double R = yAxis - xAxis;
-    double max = Math.abs(L);
-    if(Math.abs(R) > max) max = Math.abs(R);
-    if((Math.abs(yAxis) <= 1) && (Math.abs(xAxis) <= 1) && (max < 1)){
+    	if((yAxis< deadBand) && (yAxis > -deadBand)){ yAxis=0;}
+    	if((xAxis< deadBand) && (xAxis > -deadBand)){ xAxis=0;}
+    	double L = yAxis + xAxis;
+    	double R = yAxis - xAxis;
+    	double max = Math.abs(L);
+    	if(Math.abs(R) > max) max = Math.abs(R);
+    	if((Math.abs(yAxis) <= 1) && (Math.abs(xAxis) <= 1) && (max < 1)){
       	move(L,R);
-    }else
-    	move(L/max, R/max);
-    }
+    	}else
+    		move(L/max, R/max);
+    	}
        
     public void arcadeDriveLookUp(double yAxis, double xAxisCurve) {	 
 		double x = Math.abs(xAxisCurve);
@@ -196,7 +211,9 @@ public class DriveBaseSubsystem extends Subsystem {
     }
     
     public void log() {
- 
-    	
+    	SmartDashboard.putBoolean(  "IMU_Connected",        gyro.isConnected());
+    	SmartDashboard.putNumber(   "IMU_Yaw",              gyro.getYaw());
+        SmartDashboard.putNumber(   "IMU_Pitch",            gyro.getPitch());
+        SmartDashboard.putNumber(   "IMU_Roll",             gyro.getRoll());
     }
 }
