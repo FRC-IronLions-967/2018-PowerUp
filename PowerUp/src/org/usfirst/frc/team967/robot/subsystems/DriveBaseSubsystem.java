@@ -4,8 +4,10 @@ import java.text.DecimalFormat;
 
 import org.usfirst.frc.team967.robot.RobotConstraints;
 import org.usfirst.frc.team967.robot.RobotMap;
+import org.usfirst.frc.team967.robot.commands.t_ArcadeDrive;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.*;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 
@@ -25,7 +27,7 @@ public class DriveBaseSubsystem extends Subsystem {
 	
 	private WPI_TalonSRX driveRightLead;
 	private WPI_TalonSRX driveRightFollow;
-	
+		
 	private static final double deadBand = RobotConstraints.DriveSubsystem_deadBand;
 	
 	private DecimalFormat df = new DecimalFormat("#.##");
@@ -139,9 +141,6 @@ public class DriveBaseSubsystem extends Subsystem {
 		driveLeftFollow = new WPI_TalonSRX(RobotMap.driveLeftFollow);
 		driveRightLead = new WPI_TalonSRX(RobotMap.driveLeftLead);
 		driveRightFollow = new WPI_TalonSRX(RobotMap.driveLeftFollow);
-				
-		driveLeftFollow.follow(driveLeftLead);
-		driveRightFollow.follow(driveRightLead);
 		
 		try { 
 			 gyro = new AHRS(SPI.Port.kMXP); // setting the navx to the mxp port 
@@ -154,6 +153,10 @@ public class DriveBaseSubsystem extends Subsystem {
 		gyro.zeroYaw();
 		
 				
+	}
+	
+	public void test(double power) {
+		driveLeftLead.set(power);
 	}
     
     public void tankDrive(double left, double right) {
@@ -201,13 +204,15 @@ public class DriveBaseSubsystem extends Subsystem {
     
     public void move(double leftPower, double rightPower) {
     	driveLeftLead.set(leftPower);
-    	driveRightLead.set(-rightPower);
+    	driveLeftFollow.set(leftPower);
+    	driveRightLead.set( -rightPower);
+    	driveRightFollow.set(-rightPower);
     	SmartDashboard.putNumber("Left Drive Power",leftPower);
     	SmartDashboard.putNumber("Right Drive Power", -rightPower);
     }
     
     public void initDefaultCommand() {
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new t_ArcadeDrive());
     }
     
     public void log() {

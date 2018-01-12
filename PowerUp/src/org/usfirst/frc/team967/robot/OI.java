@@ -123,7 +123,7 @@ public class OI {
     }
 	
 	public Joystick getXbox0() {
-    	return xbox1;
+    	return xbox0;
     }
     
     public Joystick getXbox1() {

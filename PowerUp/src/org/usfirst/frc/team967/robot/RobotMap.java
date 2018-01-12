@@ -11,6 +11,5 @@ public class RobotMap {
 	public static final int driveLeftLead = 1;
 	public static final int driveLeftFollow = 2;
 	public static final int driveRightLead = 3;
-	public static final int driveRightFollow = 4;
-	
+	public static final int driveRightFollow = 4;	
 }

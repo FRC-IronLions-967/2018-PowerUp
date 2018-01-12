@@ -21,7 +21,7 @@ public class t_ArcadeDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.kDriveBaseSubsystem.arcadeDrive(Robot.m_oi.getXbox1().getRawAxis(1), Robot.m_oi.getXbox1().getRawAxis(4));
+    	Robot.kDriveBaseSubsystem.arcadeDrive(Robot.m_oi.getXbox0().getRawAxis(1), Robot.m_oi.getXbox0().getRawAxis(4));
     }
 
     // Make this return true when this Command no longer needs to run execute()
