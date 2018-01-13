@@ -4,13 +4,13 @@ import java.text.DecimalFormat;
 
 import org.usfirst.frc.team967.robot.RobotConstraints;
 import org.usfirst.frc.team967.robot.RobotMap;
-import org.usfirst.frc.team967.robot.commands.t_ArcadeDrive;
+import org.usfirst.frc.team967.robot.commands.T_ArcadeDrive;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.*;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
-
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -29,6 +29,8 @@ public class DriveBaseSubsystem extends Subsystem {
 	private WPI_TalonSRX driveRightFollow;
 		
 	private static final double deadBand = RobotConstraints.DriveSubsystem_deadBand;
+	
+	private DigitalInput limitSwitch;
 	
 	private DecimalFormat df = new DecimalFormat("#.##");
 	//follows (x*.9)^2
@@ -142,6 +144,8 @@ public class DriveBaseSubsystem extends Subsystem {
 		driveRightLead = new WPI_TalonSRX(RobotMap.driveLeftLead);
 		driveRightFollow = new WPI_TalonSRX(RobotMap.driveLeftFollow);
 		
+		limitSwitch = new DigitalInput(0);
+		
 		try { 
 			 gyro = new AHRS(SPI.Port.kMXP); // setting the navx to the mxp port 
 	     } 
@@ -153,10 +157,6 @@ public class DriveBaseSubsystem extends Subsystem {
 		gyro.zeroYaw();
 		
 				
-	}
-	
-	public void test(double power) {
-		driveLeftLead.set(power);
 	}
     
     public void tankDrive(double left, double right) {
@@ -202,17 +202,25 @@ public class DriveBaseSubsystem extends Subsystem {
     		move(L/max, R/max);
     }
     
-    public void move(double leftPower, double rightPower) {
-    	driveLeftLead.set(leftPower);
-    	driveLeftFollow.set(leftPower);
-    	driveRightLead.set( -rightPower);
-    	driveRightFollow.set(-rightPower);
-    	SmartDashboard.putNumber("Left Drive Power",leftPower);
-    	SmartDashboard.putNumber("Right Drive Power", -rightPower);
+    public void move(double leftPower, double rightPower) {    		driveLeftLead.set(leftPower);
+    		driveLeftFollow.set(leftPower);
+    		driveRightLead.set( -rightPower);
+    		driveRightFollow.set(-rightPower);
+    		SmartDashboard.putNumber("Left Drive Power",leftPower);
+    		SmartDashboard.putNumber("Right Drive Power", -rightPower);
     }
     
+    public void gyroZero() {
+    	gyro.zeroYaw();
+    }
+    
+    public void limit() {
+    	boolean isClosed = limitSwitch.get();
+    	SmartDashboard.putBoolean("limit", isClosed);
+    }
+      
     public void initDefaultCommand() {
-        setDefaultCommand(new t_ArcadeDrive());
+        setDefaultCommand(new T_ArcadeDrive());
     }
     
     public void log() {
