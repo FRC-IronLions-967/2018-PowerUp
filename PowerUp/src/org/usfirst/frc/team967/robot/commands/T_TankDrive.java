@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public class T_TankDrive extends Command {
 
     public T_TankDrive() {
-        // Use requires() here to declare subsystem dependencies
     	requires(Robot.kDriveBaseSubsystem);
     }
 
