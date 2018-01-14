@@ -1,18 +1,19 @@
 package org.usfirst.frc.team967.robot;
 
-import edu.wpi.cscore.CvSink;
-import edu.wpi.cscore.CvSource;
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.CameraServer;
+import org.usfirst.frc.team967.robot.commands.auto.A_BlueCenter;
+import org.usfirst.frc.team967.robot.commands.auto.A_BlueLeft;
+import org.usfirst.frc.team967.robot.commands.auto.A_BlueRight;
+import org.usfirst.frc.team967.robot.commands.auto.A_DriveStright;
+import org.usfirst.frc.team967.robot.commands.auto.A_RedCenter;
+import org.usfirst.frc.team967.robot.commands.auto.A_RedLeft;
+import org.usfirst.frc.team967.robot.commands.auto.A_RedRight;
+import org.usfirst.frc.team967.robot.subsystems.DriveBaseSubsystem;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.opencv.core.Mat;
-import org.opencv.imgproc.Imgproc;
-import org.usfirst.frc.team967.robot.subsystems.DriveBaseSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -39,25 +40,15 @@ public class Robot extends TimedRobot {
 		robotMap = new RobotMap();
 		robotConstraints = new RobotConstraints();
 		m_oi = new OI();
-//		m_chooser.addDefault("Default Auto", new ExampleCommand());
-		// chooser.addObject("My Auto", new MyAutoCommand());
+		
+		m_chooser.addDefault("Default Auto", new A_DriveStright());
+		m_chooser.addObject("Blue Left", new A_BlueLeft());
+		m_chooser.addObject("Blue Center", new A_BlueCenter());
+		m_chooser.addObject("Blue Right", new A_BlueRight());
+		m_chooser.addObject("Red Left", new A_RedLeft());
+		m_chooser.addObject("Red Center", new A_RedCenter());
+		m_chooser.addObject("Red Right", new A_RedRight());
 		SmartDashboard.putData("Auto mode", m_chooser);
-		new Thread(() -> {
-            UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-            camera.setResolution(640, 480);
-            
-            CvSink cvSink = CameraServer.getInstance().getVideo();
-            CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 640, 480);
-            
-            Mat source = new Mat();
-            Mat output = new Mat();
-            
-            while(!Thread.interrupted()) {
-                cvSink.grabFrame(source);
-                Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
-                outputStream.putFrame(output);
-            }
-        }).start();
 	}
 
 	/**
@@ -89,13 +80,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousInit() {
 		m_autonomousCommand = m_chooser.getSelected();
-
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
 
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {
