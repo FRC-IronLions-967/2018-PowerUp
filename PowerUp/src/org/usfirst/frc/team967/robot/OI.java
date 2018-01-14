@@ -1,5 +1,7 @@
 package org.usfirst.frc.team967.robot;
 
+import org.usfirst.frc.team967.lib.util.AxisButton;
+import org.usfirst.frc.team967.lib.util.POVButton;
 import org.usfirst.frc.team967.robot.commands.*;
 
 import edu.wpi.first.wpilibj.Joystick;
