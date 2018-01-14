@@ -6,7 +6,6 @@ import org.usfirst.frc.team967.robot.RobotConstraints;
 import org.usfirst.frc.team967.robot.RobotMap;
 import org.usfirst.frc.team967.robot.commands.T_ArcadeDrive;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.*;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
