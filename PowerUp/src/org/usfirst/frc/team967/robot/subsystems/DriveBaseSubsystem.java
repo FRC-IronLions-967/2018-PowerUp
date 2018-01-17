@@ -2,6 +2,7 @@ package org.usfirst.frc.team967.robot.subsystems;
 
 import java.text.DecimalFormat;
 
+import org.usfirst.frc.team967.lib.util.MatchData;
 import org.usfirst.frc.team967.robot.RobotConstraints;
 import org.usfirst.frc.team967.robot.RobotMap;
 import org.usfirst.frc.team967.robot.commands.T_ArcadeDrive;
@@ -143,6 +144,9 @@ public class DriveBaseSubsystem extends Subsystem {
 		driveRightLead = new WPI_TalonSRX(RobotMap.driveLeftLead);
 		driveRightFollow = new WPI_TalonSRX(RobotMap.driveLeftFollow);
 		
+		driveRightLead.setInverted(true);
+		driveRightFollow.setInverted(true);
+		
 		limitSwitch = new DigitalInput(0);
 		
 		try { 
@@ -201,12 +205,24 @@ public class DriveBaseSubsystem extends Subsystem {
     		move(L/max, R/max);
     }
     
-    public void move(double leftPower, double rightPower) {    		driveLeftLead.set(leftPower);
-    		driveLeftFollow.set(leftPower);
-    		driveRightLead.set( -rightPower);
-    		driveRightFollow.set(-rightPower);
-    		SmartDashboard.putNumber("Left Drive Power",leftPower);
-    		SmartDashboard.putNumber("Right Drive Power", -rightPower);
+    public void move(double leftPower, double rightPower) {    		
+    	driveLeftLead.set(leftPower);
+    	driveLeftFollow.set(leftPower);
+    	driveRightLead.set( rightPower);
+    	driveRightFollow.set(rightPower);
+    	SmartDashboard.putNumber("Left Drive Power",leftPower);
+    	SmartDashboard.putNumber("Right Drive Power", -rightPower);
+    }
+    
+    public void lookup() {
+    	MatchData.OwnedSide side = MatchData.getOwnedSide(MatchData.GameFeature.SWITCH_NEAR);
+        if (side == MatchData.OwnedSide.LEFT) {
+        	SmartDashboard.putBoolean("SwitchNearLEFT", side == MatchData.OwnedSide.LEFT);
+        } else if (side == MatchData.OwnedSide.RIGHT) {
+        	SmartDashboard.putBoolean("SwitchNearRIGHT", side == MatchData.OwnedSide.RIGHT);
+        } else {
+            // Unknown
+        }
     }
     
     public void gyroZero() {

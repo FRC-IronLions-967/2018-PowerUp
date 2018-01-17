@@ -61,7 +61,7 @@ public class OI {
 		
     	//Setting the button variables to the commands for controller number 0
 //    	xbox0povN.whenPressed();
-//    	xbox0povE.whenPressed();
+//    	xbox0povE.whenPressed(new T_BlueCenter());
 //    	xbox0povS.whenPressed();
 //    	xbox0povW.whenPressed();
 //     	xbox0_lT.whenPressed();
