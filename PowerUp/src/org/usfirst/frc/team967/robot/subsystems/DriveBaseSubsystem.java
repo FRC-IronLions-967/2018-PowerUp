@@ -141,8 +141,8 @@ public class DriveBaseSubsystem extends Subsystem {
 		
 		driveLeftLead = new WPI_TalonSRX(RobotMap.driveLeftLead);
 		driveLeftFollow = new WPI_TalonSRX(RobotMap.driveLeftFollow);
-		driveRightLead = new WPI_TalonSRX(RobotMap.driveLeftLead);
-		driveRightFollow = new WPI_TalonSRX(RobotMap.driveLeftFollow);
+		driveRightLead = new WPI_TalonSRX(RobotMap.driveRightLead);
+		driveRightFollow = new WPI_TalonSRX(RobotMap.driveRightFollow);
 		
 		driveRightLead.setInverted(true);
 		driveRightFollow.setInverted(true);
