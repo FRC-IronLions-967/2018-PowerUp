@@ -12,15 +12,26 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class DriveBaseSubsystem extends Subsystem {
+public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
 	
 	private AHRS gyro;
+	private PIDController pidController;
+	
+	public double PIDOutput;
+	
+	static final double kP = RobotConstraints.DriveSubsystem_kP;
+	static final double kI = RobotConstraints.DriveSubsystem_kI;
+	static final double kD = RobotConstraints.DriveSubsystem_kD;
+	
+	static final double kToleranceDegrees = RobotConstraints.DriveSubsystem_kToleranceDegrees;
 	
 	private WPI_TalonSRX driveLeftLead;
 	private WPI_TalonSRX driveLeftFollow;
@@ -159,6 +170,13 @@ public class DriveBaseSubsystem extends Subsystem {
 		
 		gyro.zeroYaw();
 		
+		pidController = new PIDController(kP, kI, kD, gyro, this);
+		pidController.disable();
+		pidController.setInputRange(-180.0f, 180.0f);
+		pidController.setOutputRange(-1.0, 1.0);
+		pidController.setAbsoluteTolerance(kToleranceDegrees);
+		pidController.setContinuous(true);
+		
 				
 	}
     
@@ -214,6 +232,45 @@ public class DriveBaseSubsystem extends Subsystem {
     	SmartDashboard.putNumber("Right Drive Power", -rightPower);
     }
     
+    public void pidEnable() {
+    	pidController.enable();
+    }
+    
+    public void pidDisable() {
+    	pidController.disable();
+    }
+    
+    public void pidSetPoint(double input){
+		pidController.setSetpoint(input);
+    }
+    
+    public void pidWrite(double output) {
+    	if(pidController.getDeltaSetpoint() < 0) {
+    		PIDOutput = output;
+    	}
+    	else {
+    		PIDOutput = -output;
+    	}
+    }
+    
+    public boolean pidDone() {
+    	if(Math.abs(Math.abs(pidController.getSetpoint()) - Math.abs(gyro.getYaw())) < 7){
+    		int Timer = 0;
+			if(Timer > 5) {
+    			Timer = 0;
+    			return true;
+    		}
+    		else {
+    			Timer++;
+    			return false;
+    		}
+    	}
+    	else {
+    		return false;
+    	}
+    }
+    
+    
     public void lookup() {
     	MatchData.OwnedSide side = MatchData.getOwnedSide(MatchData.GameFeature.SWITCH_NEAR);
         if (side == MatchData.OwnedSide.LEFT) {
@@ -223,6 +280,23 @@ public class DriveBaseSubsystem extends Subsystem {
         } else {
             // Unknown
         }
+    }
+    
+    public boolean resetYaw(){	
+		gyro.zeroYaw();
+		int yawTimer = 0;
+		if(yawTimer > 10){
+			yawTimer = 0;
+			return true;
+		}
+		else{
+			yawTimer ++;
+			return false;
+		}	
+	}
+    
+    public double getYaw(){
+		return gyro.getYaw();
     }
     
     public void gyroZero() {

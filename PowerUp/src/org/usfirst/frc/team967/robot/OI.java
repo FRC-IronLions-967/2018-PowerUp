@@ -2,7 +2,11 @@ package org.usfirst.frc.team967.robot;
 
 import org.usfirst.frc.team967.lib.util.AxisButton;
 import org.usfirst.frc.team967.lib.util.POVButton;
+import org.usfirst.frc.team967.robot.commands.PIDTurnToAngle;
+import org.usfirst.frc.team967.robot.commands.T_ArcadeDrive;
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class OI {
 	private Joystick xbox0 = new Joystick(0);
@@ -36,41 +40,45 @@ public class OI {
 	
 	public OI() {
 		// Setting up the variables to the buttons on controller 0
-//    	JoystickButton xbox0_a = new JoystickButton(xbox0, 1);
-//    	JoystickButton xbox0_b = new JoystickButton(xbox0, 2);
-//    	JoystickButton xbox0_x = new JoystickButton(xbox0, 3);
-//    	JoystickButton xbox0_y = new JoystickButton(xbox0, 4);
-//    	JoystickButton xbox0_lb = new JoystickButton(xbox0, 5);
-//    	JoystickButton xbox0_rb = new JoystickButton(xbox0, 6);
-//    	JoystickButton xbox0_back = new JoystickButton(xbox0, 7);
-//    	JoystickButton xbox0_start = new JoystickButton(xbox0, 8);
-//    	JoystickButton xbox0_leftStickButton = new JoystickButton(xbox0, 9);
-//    	JoystickButton xbox0_rightStickButton = new JoystickButton(xbox0, 10);
+    	JoystickButton xbox0_a = new JoystickButton(xbox0, 1);
+    	JoystickButton xbox0_b = new JoystickButton(xbox0, 2);
+    	JoystickButton xbox0_x = new JoystickButton(xbox0, 3);
+    	JoystickButton xbox0_y = new JoystickButton(xbox0, 4);
+    	JoystickButton xbox0_lb = new JoystickButton(xbox0, 5);
+    	JoystickButton xbox0_rb = new JoystickButton(xbox0, 6);
+    	JoystickButton xbox0_back = new JoystickButton(xbox0, 7);
+    	JoystickButton xbox0_start = new JoystickButton(xbox0, 8);
+    	JoystickButton xbox0_leftStickButton = new JoystickButton(xbox0, 9);
+    	JoystickButton xbox0_rightStickButton = new JoystickButton(xbox0, 10);
 		
 		// Setting up the variables to the buttons on controller 1
-//    	JoystickButton xbox1_a = new JoystickButton(xbox1, 1);
-//    	JoystickButton xbox1_b = new JoystickButton(xbox1, 2);
-//    	JoystickButton xbox1_x = new JoystickButton(xbox1, 3);
-//    	JoystickButton xbox1_y = new JoystickButton(xbox1, 4);
-//    	JoystickButton xbox1_lb = new JoystickButton(xbox1, 5);
-//    	JoystickButton xbox1_rb = new JoystickButton(xbox1, 6);
-//    	JoystickButton xbox1_back = new JoystickButton(xbox1, 7);
-//    	JoystickButton xbox1_start = new JoystickButton(xbox1, 8);
-//    	JoystickButton xbox1_leftStickButton = new JoystickButton(xbox1, 9);
-//    	JoystickButton xbox1_rightStickButton = new JoystickButton(xbox1, 10);
+    	JoystickButton xbox1_a = new JoystickButton(xbox1, 1);
+    	JoystickButton xbox1_b = new JoystickButton(xbox1, 2);
+    	JoystickButton xbox1_x = new JoystickButton(xbox1, 3);
+    	JoystickButton xbox1_y = new JoystickButton(xbox1, 4);
+    	JoystickButton xbox1_lb = new JoystickButton(xbox1, 5);
+    	JoystickButton xbox1_rb = new JoystickButton(xbox1, 6);
+    	JoystickButton xbox1_back = new JoystickButton(xbox1, 7);
+    	JoystickButton xbox1_start = new JoystickButton(xbox1, 8);
+    	JoystickButton xbox1_leftStickButton = new JoystickButton(xbox1, 9);
+    	JoystickButton xbox1_rightStickButton = new JoystickButton(xbox1, 10);
 		
     	//Setting the button variables to the commands for controller number 0
-//    	xbox0povN.whenPressed();
-//    	xbox0povE.whenPressed(new T_BlueCenter());
-//    	xbox0povS.whenPressed();
-//    	xbox0povW.whenPressed();
+    	xbox0povN.whenPressed(new PIDTurnToAngle(0));
+//    	xbox0povNE.whenPressed(new PIDTurnToAngle(45));
+    	xbox0povE.whenPressed(new PIDTurnToAngle(90));
+//    	xbox0povSE.whenPressed(new PIDTurnToAngle(135));
+    	xbox0povS.whenPressed(new PIDTurnToAngle(180));
+//    	xbox0povSW.whenPressed(new PIDTurnToAngle(225));
+    	xbox0povW.whenPressed(new PIDTurnToAngle(270));
+//    	xbox0povNW.whenPressed(new PIDTurnToAngle(315));
 //     	xbox0_lT.whenPressed();
 //     	xbox0_lT.whenReleased();
 //     	xbox0_rT.whenPressed();
 //     	xbox0_rT.whenReleased();
-//    	xbox0_a.whenPressed();
+    	xbox0_a.whenPressed(new T_ArcadeDrive());
 //    	xbox0_a.whenReleased();
-//    	xbox0_b.whenPressed();
+//    	xbox0_b.whenPressed()new ;
 //    	xbox0_b.whenPressed();
 //    	xbox0_b.whenReleased();
 //    	xbox0_x.whenPressed();

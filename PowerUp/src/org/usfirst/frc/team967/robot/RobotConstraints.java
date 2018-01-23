@@ -3,6 +3,10 @@ package org.usfirst.frc.team967.robot;
 public class RobotConstraints {
 
 	public static final double DriveSubsystem_deadBand = .15;
+	public static final double DriveSubsystem_kP = 0.0181; // 0.018
+	public static final double DriveSubsystem_kI = 0;
+	public static final double DriveSubsystem_kD = .021; // .02
+	public static final double DriveSubsystem_kToleranceDegrees = 4.0f;
 	
 	public RobotConstraints() {}
 }
