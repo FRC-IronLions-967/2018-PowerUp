@@ -6,6 +6,7 @@ import org.usfirst.frc.team967.lib.util.MatchData;
 import org.usfirst.frc.team967.robot.RobotConstraints;
 import org.usfirst.frc.team967.robot.RobotMap;
 import org.usfirst.frc.team967.robot.commands.T_ArcadeDrive;
+import org.usfirst.frc.team967.robot.commands.T_ArcadeDriveLookUp;
 
 import com.ctre.phoenix.motorcontrol.can.*;
 import com.kauailabs.navx.frc.AHRS;
@@ -42,6 +43,8 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
 	private static final double deadBand = RobotConstraints.DriveSubsystem_deadBand;
 	
 	private DigitalInput limitSwitch;
+	
+	private int Timer = 0;
 	
 	private DecimalFormat df = new DecimalFormat("#.##");
 	//follows (x*.9)^2
@@ -155,8 +158,8 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
 		driveRightLead = new WPI_TalonSRX(RobotMap.driveRightLead);
 		driveRightFollow = new WPI_TalonSRX(RobotMap.driveRightFollow);
 		
-		driveRightLead.setInverted(true);
-		driveRightFollow.setInverted(true);
+		driveLeftLead.setInverted(true);
+		driveLeftFollow.setInverted(true);
 		
 		limitSwitch = new DigitalInput(0);
 		
@@ -254,8 +257,8 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
     }
     
     public boolean pidDone() {
+    	SmartDashboard.putNumber("Timer", Timer);
     	if(Math.abs(Math.abs(pidController.getSetpoint()) - Math.abs(gyro.getYaw())) < 7){
-    		int Timer = 0;
 			if(Timer > 5) {
     			Timer = 0;
     			return true;
@@ -309,7 +312,7 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
     }
       
     public void initDefaultCommand() {
-        setDefaultCommand(new T_ArcadeDrive());
+        setDefaultCommand(new T_ArcadeDriveLookUp());
     }
     
     public void log() {

@@ -1,5 +1,9 @@
 package org.usfirst.frc.team967.robot.commands.auto;
 
+import org.usfirst.frc.team967.robot.commands.PIDDisable;
+import org.usfirst.frc.team967.robot.commands.PIDEnable;
+import org.usfirst.frc.team967.robot.commands.PIDTurnToAngle;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -8,6 +12,14 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class A_DriveStright extends CommandGroup {
 
     public A_DriveStright() {
+    	
+    	addSequential(new PIDEnable());
+    	addSequential(new PIDTurnToAngle(0));
+    	addSequential(new PIDTurnToAngle(90));
+    	addSequential(new PIDTurnToAngle(180));
+    	addSequential(new PIDTurnToAngle(90));
+    	addSequential(new PIDTurnToAngle(0));
+    	addSequential(new PIDDisable());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
