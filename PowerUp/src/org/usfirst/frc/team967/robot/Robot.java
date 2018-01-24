@@ -58,12 +58,14 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void disabledInit() {
+		Robot.kDriveBaseSubsystem.pidDisable();
 
 	}
 
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		log();
 	}
 
 	/**
