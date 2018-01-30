@@ -8,6 +8,8 @@ import org.usfirst.frc.team967.robot.commands.auto.A_RedCenter;
 import org.usfirst.frc.team967.robot.commands.auto.A_RedLeft;
 import org.usfirst.frc.team967.robot.commands.auto.A_RedRight;
 import org.usfirst.frc.team967.robot.subsystems.DriveBaseSubsystem;
+import org.usfirst.frc.team967.robot.subsystems.IntakeSubsystem;
+import org.usfirst.frc.team967.robot.subsystems.LiftSubsystem;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -26,6 +28,8 @@ public class Robot extends TimedRobot {
 	public static RobotMap robotMap;
 	public static RobotConstraints robotConstraints;
 	public static final DriveBaseSubsystem kDriveBaseSubsystem = new DriveBaseSubsystem();
+	public static final IntakeSubsystem kIntakeSubsystem = new IntakeSubsystem();
+	public static final LiftSubsystem kLiftSubsystem = new LiftSubsystem();
 	public static OI m_oi;
 
 	Command m_autonomousCommand;
