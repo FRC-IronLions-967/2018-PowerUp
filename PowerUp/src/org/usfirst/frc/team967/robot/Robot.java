@@ -1,5 +1,12 @@
 package org.usfirst.frc.team967.robot;
 
+import org.usfirst.frc.team967.robot.commands.auto.A_BlueCenter;
+import org.usfirst.frc.team967.robot.commands.auto.A_BlueLeft;
+import org.usfirst.frc.team967.robot.commands.auto.A_BlueRight;
+import org.usfirst.frc.team967.robot.commands.auto.A_DriveForward;
+import org.usfirst.frc.team967.robot.commands.auto.A_RedCenter;
+import org.usfirst.frc.team967.robot.commands.auto.A_RedLeft;
+import org.usfirst.frc.team967.robot.commands.auto.A_RedRight;
 import org.usfirst.frc.team967.robot.subsystems.DriveBaseSubsystem;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -34,13 +41,13 @@ public class Robot extends TimedRobot {
 		robotConstraints = new RobotConstraints();
 		m_oi = new OI();
 		
-//		m_chooser.addDefault("Default Auto", new A_DriveStright());
-//		m_chooser.addObject("Blue Left", new A_BlueLeft());
-//		m_chooser.addObject("Blue Center", new A_BlueCenter());
-//		m_chooser.addObject("Blue Right", new A_BlueRight());
-//		m_chooser.addObject("Red Left", new A_RedLeft());
-//		m_chooser.addObject("Red Center", new A_RedCenter());
-//		m_chooser.addObject("Red Right", new A_RedRight());
+		m_chooser.addDefault("Default Auto", new A_DriveForward());
+		m_chooser.addObject("Blue Left", new A_BlueLeft());
+		m_chooser.addObject("Blue Center", new A_BlueCenter());
+		m_chooser.addObject("Blue Right", new A_BlueRight());
+		m_chooser.addObject("Red Left", new A_RedLeft());
+		m_chooser.addObject("Red Center", new A_RedCenter());
+		m_chooser.addObject("Red Right", new A_RedRight());
 		SmartDashboard.putData("Auto mode", m_chooser);
 	}
 
