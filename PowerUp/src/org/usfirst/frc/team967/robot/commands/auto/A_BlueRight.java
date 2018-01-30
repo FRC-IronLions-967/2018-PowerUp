@@ -1,5 +1,7 @@
 package org.usfirst.frc.team967.robot.commands.auto;
 
+import org.usfirst.frc.team967.robot.commands.moveDirect;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -8,6 +10,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class A_BlueRight extends CommandGroup {
 
     public A_BlueRight() {
+    	addSequential(new moveDirect(.5 * .75,.5 * 1.25));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

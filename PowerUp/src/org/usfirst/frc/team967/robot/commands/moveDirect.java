@@ -1,5 +1,7 @@
 package org.usfirst.frc.team967.robot.commands;
 
+import java.sql.Time;
+
 import org.usfirst.frc.team967.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -7,36 +9,36 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class PIDTurnToAngle extends Command {
+public class moveDirect extends Command {
 
-	private double Angle;
+	private double Left = 0;
+	private double Right = 0;
 	
-    public PIDTurnToAngle(double angle) {
+    public moveDirect(double left, double right) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.kDriveBaseSubsystem);
-    	Angle = angle;
+    	Left = left;
+    	Right = right;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.kDriveBaseSubsystem.pidSetPoint(Angle);
-    	Robot.kDriveBaseSubsystem.pidEnable();
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.kDriveBaseSubsystem.move(Robot.kDriveBaseSubsystem.PIDOutput *.85, -Robot.kDriveBaseSubsystem.PIDOutput *.85);
+    	Robot.kDriveBaseSubsystem.move(Left, Right);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.kDriveBaseSubsystem.pidDone();
+    	return Robot.kDriveBaseSubsystem.pidDone();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.kDriveBaseSubsystem.pidDisable();
     }
 
     // Called when another command which requires one or more of the same

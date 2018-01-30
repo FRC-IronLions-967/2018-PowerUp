@@ -1,5 +1,9 @@
 package org.usfirst.frc.team967.robot.commands.auto;
 
+import org.usfirst.frc.team967.robot.commands.PIDTurnToAngle;
+import org.usfirst.frc.team967.robot.commands.T_ArcadeDrive;
+import org.usfirst.frc.team967.robot.commands.moveDirect;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -8,6 +12,13 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class A_BlueLeft extends CommandGroup {
 
     public A_BlueLeft() {
+    		addSequential(new PIDTurnToAngle(60));
+    		addSequential(new PIDTurnToAngle(120));
+    		addSequential(new PIDTurnToAngle(180));
+    		addSequential(new PIDTurnToAngle(240));
+    		addSequential(new PIDTurnToAngle(300));
+    		addSequential(new PIDTurnToAngle(360));
+    	
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
