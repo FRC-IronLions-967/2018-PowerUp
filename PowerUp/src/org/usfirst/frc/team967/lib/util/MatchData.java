@@ -30,13 +30,16 @@ public class MatchData {
 		char gd = gsm.charAt(index);
         switch (gd) {
             case 'L':
+            	return OwnedSide.LEFT;
             case 'l':
                 return OwnedSide.LEFT;
             case 'R':
+            	return OwnedSide.RIGHT;
             case 'r':
                 return OwnedSide.RIGHT;
             default:
                 return OwnedSide.UNKNOWN;
+         
         }
 	}
 }

@@ -178,9 +178,7 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
 		pidController.setInputRange(-180.0f, 180.0f);
 		pidController.setOutputRange(-1.0, 1.0);
 		pidController.setAbsoluteTolerance(kToleranceDegrees);
-		pidController.setContinuous(true);
-		
-				
+		pidController.setContinuous(true);		
 	}
     
     public void tankDrive(double left, double right) {

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team967.robot.commands.auto.subMain;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -8,9 +9,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class A_BlueCenter_LRL extends CommandGroup {
 
     public A_BlueCenter_LRL() {
+    	SmartDashboard.putBoolean("B C LRL", true);
         // Add Commands here:
         // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
         // these will run in order.
 
         // To run multiple commands at the same time,

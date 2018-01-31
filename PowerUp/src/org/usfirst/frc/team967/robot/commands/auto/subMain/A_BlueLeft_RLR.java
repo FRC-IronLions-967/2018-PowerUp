@@ -1,6 +1,7 @@
 package org.usfirst.frc.team967.robot.commands.auto.subMain;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -8,6 +9,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class A_BlueLeft_RLR extends CommandGroup {
 
     public A_BlueLeft_RLR() {
+    	SmartDashboard.putBoolean("B L RLR", true);
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
