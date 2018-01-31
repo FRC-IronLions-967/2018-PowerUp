@@ -1,5 +1,9 @@
 package org.usfirst.frc.team967.robot.commands.auto.subMain;
 
+import org.usfirst.frc.team967.robot.commands.PIDDisable;
+import org.usfirst.frc.team967.robot.commands.PIDEnable;
+import org.usfirst.frc.team967.robot.commands.PIDTurnToAngle;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -10,6 +14,12 @@ public class A_BlueCenter_LLL extends CommandGroup {
 
     public A_BlueCenter_LLL() {
     	SmartDashboard.putBoolean("B C LLL", true);
+    	
+    	addSequential(new PIDEnable());
+    	addSequential(new PIDTurnToAngle(50));
+    	addSequential(new PIDDisable());
+    	
+    	
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
