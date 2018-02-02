@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class A_RedCenter_LLL extends CommandGroup {
 
     public A_RedCenter_LLL() {
-    	SmartDashboard.putBoolean("R C LLL", true);
+    	
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

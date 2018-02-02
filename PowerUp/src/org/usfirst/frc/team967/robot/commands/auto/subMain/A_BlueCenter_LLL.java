@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class A_BlueCenter_LLL extends CommandGroup {
 
     public A_BlueCenter_LLL() {
-    	SmartDashboard.putBoolean("B C LLL", true);
     	
     	addSequential(new PIDEnable());
     	addSequential(new PIDTurnToAngle(50));

@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class A_BlueLeft_LLL extends CommandGroup {
 
     public A_BlueLeft_LLL() {
-    	SmartDashboard.putBoolean("B L LLL", true);
+    	
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
