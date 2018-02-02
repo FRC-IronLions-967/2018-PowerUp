@@ -11,6 +11,7 @@ import org.usfirst.frc.team967.robot.subsystems.DriveBaseSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.LiftSubsystem;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -53,6 +54,8 @@ public class Robot extends TimedRobot {
 		m_chooser.addObject("Red Center", new A_RedCenter());
 		m_chooser.addObject("Red Right", new A_RedRight());
 		SmartDashboard.putData("Auto mode", m_chooser);
+		
+		CameraServer.getInstance().startAutomaticCapture();
 	}
 
 	/**
