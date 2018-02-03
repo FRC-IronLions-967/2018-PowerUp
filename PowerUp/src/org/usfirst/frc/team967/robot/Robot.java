@@ -134,7 +134,7 @@ public class Robot extends TimedRobot {
 	
 	
 	public void log() {
-//		kDriveBaseSubsystem.log();
+		kDriveBaseSubsystem.log();
 	}
 	
 }

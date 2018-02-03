@@ -55,7 +55,10 @@ NetworkTables.addKeyListener('/SmartDashboard/arm/encoder', (key, value) => {
 NetworkTables.addKeyListener('/SmartDashboard/Left Drive Power', (key, value) => {
     // 0 is all the way back, 1200 is 45 degrees forward. We don't want it going past that.
     ui.leftDrivePowa.innerHTML = '' + value;
-    console.log(value);
+});
+
+NetworkTables.addKeyListener('/SmartDashbourd/Right Drive Power', (key, value)=> {
+    ui.rightDrivePowa.innerHTML = '' + value;
 });
 
 // This button is just an example of triggering an event on the robot by clicking a button.
