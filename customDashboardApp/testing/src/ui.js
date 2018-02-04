@@ -19,7 +19,8 @@ let ui = {
     },
     autoSelect: document.getElementById('auto-select'),
     armPosition: document.getElementById('arm-position'),
-    leftDrivePowa: document.getElementById('left-drive-powa')
+    leftDrivePowa: document.getElementById('left-drive-powa'),
+    rightDrivePowa: document.getElementById('right-drive-powa')
 };
 
 // Key Listeners
