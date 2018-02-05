@@ -1,8 +1,8 @@
 package org.usfirst.frc.team967.robot.commands.auto.subMain;
 
-import org.usfirst.frc.team967.robot.commands.PIDDisable;
-import org.usfirst.frc.team967.robot.commands.PIDEnable;
-import org.usfirst.frc.team967.robot.commands.PIDTurnToAngle;
+import org.usfirst.frc.team967.robot.commands.GyroPIDDisable;
+import org.usfirst.frc.team967.robot.commands.GyroPIDEnable;
+import org.usfirst.frc.team967.robot.commands.GyroPIDTurnToAngle;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -14,9 +14,9 @@ public class A_BlueCenter_LLL extends CommandGroup {
 
     public A_BlueCenter_LLL() {
     	
-    	addSequential(new PIDEnable());
-    	addSequential(new PIDTurnToAngle(50));
-    	addSequential(new PIDDisable());
+    	addSequential(new GyroPIDEnable());
+    	addSequential(new GyroPIDTurnToAngle(50));
+    	addSequential(new GyroPIDDisable());
     	
     	
         // Add Commands here:

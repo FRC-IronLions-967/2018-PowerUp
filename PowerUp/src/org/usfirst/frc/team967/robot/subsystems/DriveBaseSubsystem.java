@@ -42,8 +42,6 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
 		
 	private static final double deadBand = RobotConstraints.DriveSubsystem_deadBand;
 	
-	private DigitalInput limitSwitch;
-	
 	private int Timer = 0;
 	
 	private DecimalFormat df = new DecimalFormat("#.##");
@@ -160,8 +158,6 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
 		
 		driveLeftLead.setInverted(true);
 		driveLeftFollow.setInverted(true);
-		
-		limitSwitch = new DigitalInput(0);
 		
 		try { 
 			 gyro = new AHRS(SPI.Port.kMXP); // setting the navx to the mxp port 
@@ -302,11 +298,6 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
     
     public void gyroZero() {
     	gyro.zeroYaw();
-    }
-    
-    public void limit() {
-    	boolean isClosed = limitSwitch.get();
-    	SmartDashboard.putBoolean("limit", isClosed);
     }
       
     public void initDefaultCommand() {

@@ -7,17 +7,17 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class PIDEnable extends Command {
+public class LiftPIDDisable extends Command {
 
-    public PIDEnable() {
+    public LiftPIDDisable() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.kDriveBaseSubsystem);
+    	requires(Robot.kLiftSubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.kDriveBaseSubsystem.pidEnable();
+    	Robot.kLiftSubsystem.pidStop();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -26,7 +26,7 @@ public class PIDEnable extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
