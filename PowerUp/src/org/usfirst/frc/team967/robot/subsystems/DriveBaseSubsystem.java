@@ -156,8 +156,17 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
 		driveRightLead = new WPI_TalonSRX(RobotMap.driveRightLead);
 		driveRightFollow = new WPI_TalonSRX(RobotMap.driveRightFollow);
 		
+		driveLeftLead.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.QuadEncoder, 0, 0);
+		driveLeftLead.setSensorPhase(false);
+		
+		driveRightLead.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.QuadEncoder, 0, 0);
+		driveRightLead.setSensorPhase(false);
+		
 		driveLeftLead.setInverted(true);
 		driveLeftFollow.setInverted(true);
+		
+		driveLeftFollow.follow(driveLeftLead);
+		driveRightFollow.follow(driveRightLead);
 		
 		try { 
 			 gyro = new AHRS(SPI.Port.kMXP); // setting the navx to the mxp port 
@@ -222,9 +231,9 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
     
     public void move(double leftPower, double rightPower) {    		
     	driveLeftLead.set(leftPower);
-    	driveLeftFollow.set(leftPower);
+//    	driveLeftFollow.set(leftPower);
     	driveRightLead.set( rightPower);
-    	driveRightFollow.set(rightPower);
+//    	driveRightFollow.set(rightPower);
     	SmartDashboard.putNumber("Left Drive Power",leftPower);
     	SmartDashboard.putNumber("Right Drive Power", -rightPower);
     }
