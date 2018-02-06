@@ -11,7 +11,7 @@ public class RobotConstraints {
 	public static final double LiftSubsystem_kP = 0;
 	public static final double LiftSubsystem_kI = 0;
 	public static final double LiftSubsystem_kD = 0;
-	public static final double LiftSubsystem_kTolerance = 1;
+	public static final double LiftSubsystem_kTolerance = 1f;
 	
 	public RobotConstraints() {}
 }

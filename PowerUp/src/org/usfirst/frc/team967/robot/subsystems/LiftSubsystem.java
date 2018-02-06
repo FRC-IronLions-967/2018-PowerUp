@@ -32,6 +32,11 @@ public class LiftSubsystem extends Subsystem implements PIDOutput {
 	private PIDSource input;
 	public double PIDOutput;
 	
+	public int setPoint = 0;
+	
+	private int minimumSetPoint = 0;
+	private int maxumeSetPoint = 100;
+	
     public LiftSubsystem(){
     	liftLead = new WPI_TalonSRX(RobotMap.liftLead);
     	liftFollow = new WPI_TalonSRX(RobotMap.liftFollow);
@@ -47,13 +52,23 @@ public class LiftSubsystem extends Subsystem implements PIDOutput {
     	liftController.setContinuous(false);
     	
     }
-
-//    public void limit() {
-//    	boolean isClosed = limitSwitchTop.get();
-//    	SmartDashboard.putBoolean("limit", isClosed);
-//    }
     
+    public void limit() {
+    	boolean isTop = limitSwitchTop.get();
+    	boolean isBottom = limitSwitchBottom.get();
+    	
+    	if (isTop) {
+    		setPoint = maxumeSetPoint; 
+    	}
+    	else if (isBottom) {
+    		setPoint = minimumSetPoint;
+    	}
+    }
     
+    public void changeSetpoint(int input) {
+    	setPoint = setPoint + input;
+    	pidSetSetpoint(setPoint);
+    } 
     
     public void moveLift(double power) {
     	liftLead.set(power);

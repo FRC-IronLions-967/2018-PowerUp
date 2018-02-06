@@ -267,18 +267,6 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
     	}
     }
     
-    
-    public void lookup() {
-    	MatchData.OwnedSide side = MatchData.getOwnedSide(MatchData.GameFeature.SWITCH_NEAR);
-        if (side == MatchData.OwnedSide.LEFT) {
-        	SmartDashboard.putBoolean("SwitchNearLEFT", side == MatchData.OwnedSide.LEFT);
-        } else if (side == MatchData.OwnedSide.RIGHT) {
-        	SmartDashboard.putBoolean("SwitchNearRIGHT", side == MatchData.OwnedSide.RIGHT);
-        } else {
-            // Unknown
-        }
-    }
-    
     public boolean resetYaw(){	
 		gyro.zeroYaw();
 		int yawTimer = 0;
