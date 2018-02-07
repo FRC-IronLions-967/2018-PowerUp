@@ -1,7 +1,7 @@
 package org.usfirst.frc.team967.robot.commands.auto.subMain;
 
 import org.usfirst.frc.team967.robot.commands.DriveStright;
-import org.usfirst.frc.team967.robot.commands.DriveZeroEncoders;
+import org.usfirst.frc.team967.robot.commands.ZeroEncodersDriveBase;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -12,7 +12,7 @@ public class A_BlueCenter_LRL extends CommandGroup {
 
     public A_BlueCenter_LRL() {
     	
-    	addSequential(new DriveZeroEncoders());
+    	addSequential(new ZeroEncodersDriveBase());
     	addSequential(new DriveStright(4000,.5));
     	
         // Add Commands here:

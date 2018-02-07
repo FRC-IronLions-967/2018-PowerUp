@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveZeroEncoders extends Command {
+public class ZeroEncodersDriveBase extends Command {
 
-    public DriveZeroEncoders() {
+    public ZeroEncodersDriveBase() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.kDriveBaseSubsystem);

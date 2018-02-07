@@ -261,7 +261,6 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
     }
     
     public boolean pidDone() {
-    	SmartDashboard.putNumber("Timer", Timer);
     	if(Math.abs(Math.abs(pidController.getSetpoint()) - Math.abs(gyro.getYaw())) < 7){
 			if(Timer > 5) {
     			Timer = 0;
@@ -298,10 +297,10 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
     	gyro.zeroYaw();
     }
     
-	public double getLEncoder(){
+	public double getLeftEncoder(){
 		return driveLeftLead.getSensorCollection().getQuadraturePosition();
 	}
-	public double getREncoder(){
+	public double getRightEncoder(){
 		return driveRightLead.getSensorCollection().getQuadraturePosition();
 	}
 	
@@ -321,7 +320,7 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
 	public boolean driveDistance(double count){
 		countsmeet = false;
 		if(count > 0){
-			if((-getLEncoder() + getREncoder())/2 > count){
+			if((-getLeftEncoder() + getRightEncoder())/2 > count){
 				countsmeet = true;
 				return true;
 	    	}
@@ -330,7 +329,7 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
 			}
 		}
 		else{
-			if((-getLEncoder() + getREncoder())/2 < count){
+			if((-getLeftEncoder() + getRightEncoder())/2 < count){
 				countsmeet = true;
 				return true;
 	    	}
@@ -345,15 +344,12 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
     }
     
     public void log() {
-    	SmartDashboard.putNumber("Right Sensor position", getREncoder());
-//    	SmartDashboard.putNumber("Right Sensor Velocity", driveRightLead.getSelectedSensorVelocity(0));
-    	SmartDashboard.putBoolean("test", driveDistance(SmartDashboard.getNumber("number", 0)));
-    	SmartDashboard.putNumber("Left Sensor position",  getLEncoder());
-//    	SmartDashboard.putNumber("Left Sensor Velocity", -driveLeftLead.getSelectedSensorVelocity(0));
+    	SmartDashboard.putNumber("Right Encoder position", getRightEncoder());
+    	SmartDashboard.putNumber("Left Encoder position",  getLeftEncoder());
     	
     	SmartDashboard.putBoolean(  "IMU_Connected",        gyro.isConnected());
     	SmartDashboard.putNumber(   "IMU_Yaw",              gyro.getYaw());
-        SmartDashboard.putNumber(   "IMU_Pitch",            gyro.getPitch());
-        SmartDashboard.putNumber(   "IMU_Roll",             gyro.getRoll());
+//        SmartDashboard.putNumber(   "IMU_Pitch",            gyro.getPitch());
+//        SmartDashboard.putNumber(   "IMU_Roll",             gyro.getRoll());
     }
 }
