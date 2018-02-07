@@ -1,5 +1,9 @@
 package org.usfirst.frc.team967.robot.commands.auto.subMain;
 
+import org.usfirst.frc.team967.robot.commands.DriveDistance;
+import org.usfirst.frc.team967.robot.commands.DriveStright;
+import org.usfirst.frc.team967.robot.commands.DriveZeroEncoders;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -9,6 +13,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class A_BlueCenter_LRL extends CommandGroup {
 
     public A_BlueCenter_LRL() {
+    	
+    	addSequential(new DriveZeroEncoders());
+    	addSequential(new DriveStright(4000,.5));
+//    	addSequential(new DriveDistance(4000,0.5));
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());

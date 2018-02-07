@@ -21,7 +21,6 @@ public class LiftSubsystem extends Subsystem {
 	private DigitalInput limitSwitchTop;
 	private DigitalInput limitSwitchBottom;
 	
-	private PIDController liftController;
 	private final double kP = RobotConstraints.LiftSubsystem_kP;
 	private final double kI = RobotConstraints.LiftSubsystem_kI;
 	private final double kD = RobotConstraints.LiftSubsystem_kD;
@@ -31,10 +30,13 @@ public class LiftSubsystem extends Subsystem {
     	liftLead = new WPI_TalonSRX(RobotMap.liftLead);
     	liftFollow = new WPI_TalonSRX(RobotMap.liftFollow);
     	
-    	limitSwitchTop = new DigitalInput(RobotMap.limitSwitchTop);
-    	limitSwitchBottom = new DigitalInput(RobotMap.limitSwitchBottom);
+    	liftLead.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.QuadEncoder, 0, 0);
+    	liftLead.setSensorPhase(false);
     	
     	liftFollow.follow(liftLead);
+    	
+    	limitSwitchTop = new DigitalInput(RobotMap.limitSwitchTop);
+    	limitSwitchBottom = new DigitalInput(RobotMap.limitSwitchBottom);
     }
     
     public void limit() {
@@ -49,6 +51,9 @@ public class LiftSubsystem extends Subsystem {
     
 	public void initDefaultCommand() {}
     
-    public void log() {}
+    public void log() {
+    	SmartDashboard.putNumber("Sensor position", liftLead.getSelectedSensorPosition(0));
+    	SmartDashboard.putNumber("Sensor Velocity", liftLead.getSelectedSensorVelocity(0));
+    }
 }
 

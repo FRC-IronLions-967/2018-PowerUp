@@ -42,6 +42,8 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
 		
 	private static final double deadBand = RobotConstraints.DriveSubsystem_deadBand;
 	
+	public boolean countsmeet;
+	private int encoderTimer = 0;
 	private int Timer = 0;
 	
 	private DecimalFormat df = new DecimalFormat("#.##");
@@ -157,7 +159,7 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
 		driveRightFollow = new WPI_TalonSRX(RobotMap.driveRightFollow);
 		
 		driveLeftLead.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.QuadEncoder, 0, 0);
-		driveLeftLead.setSensorPhase(false);
+		driveLeftLead.setSensorPhase(true);
 		
 		driveRightLead.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.QuadEncoder, 0, 0);
 		driveRightLead.setSensorPhase(false);
@@ -296,12 +298,60 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
     public void gyroZero() {
     	gyro.zeroYaw();
     }
-      
+    
+	public double getLEncoder(){
+		return driveLeftLead.getSensorCollection().getQuadraturePosition();
+	}
+	public double getREncoder(){
+		return driveRightLead.getSensorCollection().getQuadraturePosition();
+	}
+	
+	public boolean zeroEncoders(){	
+		driveLeftLead.getSensorCollection().setQuadraturePosition(0, 0);
+		driveRightLead.getSensorCollection().setQuadraturePosition(0, 0);
+		if(encoderTimer > 10){
+			encoderTimer = 0;
+			return true;
+		}
+		else{
+			encoderTimer ++;
+			return false;
+		}
+	}
+	
+	public boolean driveDistance(double count){
+		countsmeet = false;
+		if(count > 0){
+			if((-getLEncoder() + getREncoder())/2 > count){
+				countsmeet = true;
+				return true;
+	    	}
+			else{
+				return false;
+			}
+		}
+		else{
+			if((-getLEncoder() + getREncoder())/2 < count){
+				countsmeet = true;
+				return true;
+	    	}
+			else{
+				return false;
+			}
+		}
+	}
+	  
     public void initDefaultCommand() {
         setDefaultCommand(new T_ArcadeDriveLookUp());
     }
     
     public void log() {
+    	SmartDashboard.putNumber("Right Sensor position", getREncoder());
+//    	SmartDashboard.putNumber("Right Sensor Velocity", driveRightLead.getSelectedSensorVelocity(0));
+    	SmartDashboard.putBoolean("test", driveDistance(SmartDashboard.getNumber("number", 0)));
+    	SmartDashboard.putNumber("Left Sensor position",  getLEncoder());
+//    	SmartDashboard.putNumber("Left Sensor Velocity", -driveLeftLead.getSelectedSensorVelocity(0));
+    	
     	SmartDashboard.putBoolean(  "IMU_Connected",        gyro.isConnected());
     	SmartDashboard.putNumber(   "IMU_Yaw",              gyro.getYaw());
         SmartDashboard.putNumber(   "IMU_Pitch",            gyro.getPitch());
