@@ -233,19 +233,18 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
     
     public void move(double leftPower, double rightPower) {    		
     	driveLeftLead.set(leftPower);
-//    	driveLeftFollow.set(leftPower);
     	driveRightLead.set( rightPower);
-//    	driveRightFollow.set(rightPower);
     	SmartDashboard.putNumber("Left Drive Power",leftPower);
     	SmartDashboard.putNumber("Right Drive Power", -rightPower);
     }
     
-    public void pidEnable() {
-    	pidController.enable();
-    }
-    
-    public void pidDisable() {
-    	pidController.disable();
+    public void pidChangeState(String state) {
+    	if (state == "Enable") {
+    		pidController.enable();
+    	}
+    	else if (state == "Disable") {
+    		pidController.disable();
+    	}
     }
     
     public void pidSetPoint(double input){

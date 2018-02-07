@@ -25,7 +25,7 @@ public class DriveStright extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.kDriveBaseSubsystem.pidSetPoint(Robot.kDriveBaseSubsystem.getYaw());
-    	Robot.kDriveBaseSubsystem.pidEnable();
+    	Robot.kDriveBaseSubsystem.pidChangeState("Enable");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -42,7 +42,7 @@ public class DriveStright extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.kDriveBaseSubsystem.zeroEncoders();
-    	Robot.kDriveBaseSubsystem.pidDisable();
+    	Robot.kDriveBaseSubsystem.pidChangeState("Disable");
     	Robot.kDriveBaseSubsystem.move(0, 0);
     	Robot.kDriveBaseSubsystem.countsmeet = true;
     }

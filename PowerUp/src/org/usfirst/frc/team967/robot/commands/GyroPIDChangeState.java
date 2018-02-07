@@ -7,19 +7,22 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class GyroPIDDisable extends Command {
+public class GyroPIDChangeState extends Command {
 
-    public GyroPIDDisable() {
+	String state;
+	
+    public GyroPIDChangeState(String State) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.kDriveBaseSubsystem);
+    	state = State;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.kDriveBaseSubsystem.pidDisable();;
+    	Robot.kDriveBaseSubsystem.pidChangeState(state);
+    	
     }
-
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     }
