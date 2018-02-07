@@ -65,8 +65,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void disabledInit() {
-		Robot.kDriveBaseSubsystem.pidDisable();
-
+		Robot.kDriveBaseSubsystem.pidChangeState("Disable");
 	}
 
 	@Override

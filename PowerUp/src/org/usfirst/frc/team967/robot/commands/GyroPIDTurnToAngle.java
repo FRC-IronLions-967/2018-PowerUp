@@ -21,7 +21,7 @@ public class GyroPIDTurnToAngle extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.kDriveBaseSubsystem.pidSetPoint(Angle);
-    	Robot.kDriveBaseSubsystem.pidEnable();
+    	Robot.kDriveBaseSubsystem.pidChangeState("Enable");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -36,7 +36,7 @@ public class GyroPIDTurnToAngle extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.kDriveBaseSubsystem.pidDisable();
+    	Robot.kDriveBaseSubsystem.pidChangeState("Enable");
     }
 
     // Called when another command which requires one or more of the same
