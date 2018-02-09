@@ -1,5 +1,7 @@
 package org.usfirst.frc.team967.robot.commands.auto.subMain;
 
+import org.usfirst.frc.team967.robot.commands.AutoEndResets;
+import org.usfirst.frc.team967.robot.commands.AutoStartUpResets;
 import org.usfirst.frc.team967.robot.commands.GyroPIDChangeState;
 import org.usfirst.frc.team967.robot.commands.GyroPIDTurnToAngle;
 
@@ -12,11 +14,9 @@ public class A_BlueCenter_LLL extends CommandGroup {
 
     public A_BlueCenter_LLL() {
     	
-    	addSequential(new GyroPIDChangeState("Enable"));
-    	addSequential(new GyroPIDTurnToAngle(50));
-    	addSequential(new GyroPIDChangeState("Disable"));
-    	
-    	
+    	addSequential(new AutoStartUpResets());
+    	addSequential(new AutoEndResets());
+   
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team967.robot.commands.auto.subMain;
 
+import org.usfirst.frc.team967.robot.commands.AutoEndResets;
 import org.usfirst.frc.team967.robot.commands.AutoStartUpResets;
 import org.usfirst.frc.team967.robot.commands.DriveStright;
 import org.usfirst.frc.team967.robot.commands.GyroPIDTurnToAngle;
@@ -19,6 +20,7 @@ public class A_BlueRight_LLL extends CommandGroup {
     	addSequential(new DriveStright(4000,.5)); // Change value to reflect distance 
     	addSequential(new GyroPIDTurnToAngle(-90)); // Needs Testing 
     	addSequential(new DriveStright(500,.5)); // Change value to reflect distance
+    	addSequential(new AutoEndResets());
     	
     	
         // Add Commands here:

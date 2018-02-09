@@ -1,5 +1,7 @@
 package org.usfirst.frc.team967.robot.commands.auto.subMain;
 
+import org.usfirst.frc.team967.robot.commands.AutoEndResets;
+import org.usfirst.frc.team967.robot.commands.AutoStartUpResets;
 import org.usfirst.frc.team967.robot.commands.DriveStright;
 import org.usfirst.frc.team967.robot.commands.ZeroEncodersDriveBase;
 
@@ -12,8 +14,8 @@ public class A_BlueCenter_LRL extends CommandGroup {
 
     public A_BlueCenter_LRL() {
     	
-    	addSequential(new ZeroEncodersDriveBase());
-    	addSequential(new DriveStright(-4000,.5));
+    	addSequential(new AutoStartUpResets());
+    	addSequential(new AutoEndResets());
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());
