@@ -35,7 +35,7 @@ let updateGyro = (key, value) => {
     ui.gyro.arm.style.transform = `rotate(${ui.gyro.visualVal}deg)`;
     ui.gyro.number.innerHTML = ui.gyro.visualVal + 'º';
 };
-NetworkTables.addKeyListener('/SmartDashboard/drive/navx/yaw', updateGyro);
+NetworkTables.addKeyListener('/SmartDashboard/IMU_Yaw', updateGyro);
 
 // The following case is an example, for a robot with an arm at the front.
 NetworkTables.addKeyListener('/SmartDashboard/arm/encoder', (key, value) => {
@@ -59,6 +59,7 @@ NetworkTables.addKeyListener('/SmartDashboard/Left Drive Power', (key, value) =>
 });
 
 NetworkTables.addKeyListener('/SmartDashbourd/Right Drive Power', (key, value)=> {
+    ui.rightDrivePowa.innerHTML = '' + value;
     ui.rightDrivePowa.innerHTML = '' + value;
 });
 
