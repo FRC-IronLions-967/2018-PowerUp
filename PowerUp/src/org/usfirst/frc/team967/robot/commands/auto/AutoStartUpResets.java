@@ -1,15 +1,18 @@
-package org.usfirst.frc.team967.robot.commands;
+package org.usfirst.frc.team967.robot.commands.auto;
+
+import org.usfirst.frc.team967.robot.commands.GyroPIDChangeState;
+import org.usfirst.frc.team967.robot.commands.ZeroEncodersDriveBase;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class AutoEndResets extends CommandGroup {
+public class AutoStartUpResets extends CommandGroup {
 
-    public AutoEndResets() {
+    public AutoStartUpResets() {
     	
-    	addSequential(new GyroPIDChangeState("Disable"));
+    	addSequential(new GyroPIDChangeState("Enable"));
     	addSequential(new ZeroEncodersDriveBase());
     	
         // Add Commands here:

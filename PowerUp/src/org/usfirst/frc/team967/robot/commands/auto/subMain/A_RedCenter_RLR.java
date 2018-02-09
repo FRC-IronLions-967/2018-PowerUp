@@ -1,7 +1,7 @@
 package org.usfirst.frc.team967.robot.commands.auto.subMain;
 
-import org.usfirst.frc.team967.robot.commands.AutoEndResets;
-import org.usfirst.frc.team967.robot.commands.AutoStartUpResets;
+import org.usfirst.frc.team967.robot.commands.auto.AutoEndResets;
+import org.usfirst.frc.team967.robot.commands.auto.AutoStartUpResets;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
