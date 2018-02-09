@@ -1,25 +1,16 @@
-package org.usfirst.frc.team967.robot.commands.auto.subMain;
-
-import org.usfirst.frc.team967.robot.commands.AutoStartUpResets;
-import org.usfirst.frc.team967.robot.commands.DriveStright;
-import org.usfirst.frc.team967.robot.commands.GyroPIDTurnToAngle;
-import org.usfirst.frc.team967.robot.commands.ZeroEncodersDriveBase;
+package org.usfirst.frc.team967.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class A_BlueRight_LLL extends CommandGroup {
+public class AutoStartUpResets extends CommandGroup {
 
-    public A_BlueRight_LLL() {
+    public AutoStartUpResets() {
     	
-    	addSequential(new AutoStartUpResets());
-    	addSequential(new DriveStright(4000,.5)); // Change value to reflect distance 
-    	addSequential(new GyroPIDTurnToAngle(-90)); // Needs Testing 
-    	addSequential(new DriveStright(500,.5)); // Change value to reflect distance
-    	
+    	addSequential(new GyroPIDChangeState("Enable"));
+    	addSequential(new ZeroEncodersDriveBase());
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());

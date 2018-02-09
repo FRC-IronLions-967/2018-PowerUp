@@ -301,7 +301,7 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
 		return driveLeftLead.getSensorCollection().getQuadraturePosition();
 	}
 	public double getRightEncoder(){
-		return driveRightLead.getSensorCollection().getQuadraturePosition();
+		return -driveRightLead.getSensorCollection().getQuadraturePosition();
 	}
 	
 	public boolean zeroEncoders(){	
@@ -320,7 +320,7 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
 	public boolean driveDistance(double count){
 		countsmeet = false;
 		if(count > 0){
-			if((-getLeftEncoder() + getRightEncoder())/2 > count){
+			if((getLeftEncoder() + getRightEncoder())/2 > count){
 				countsmeet = true;
 				return true;
 	    	}
@@ -329,7 +329,7 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
 			}
 		}
 		else{
-			if((-getLeftEncoder() + getRightEncoder())/2 < count){
+			if((getLeftEncoder() + getRightEncoder())/2 < count){
 				countsmeet = true;
 				return true;
 	    	}

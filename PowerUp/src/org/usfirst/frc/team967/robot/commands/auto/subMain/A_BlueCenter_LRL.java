@@ -13,7 +13,7 @@ public class A_BlueCenter_LRL extends CommandGroup {
     public A_BlueCenter_LRL() {
     	
     	addSequential(new ZeroEncodersDriveBase());
-    	addSequential(new DriveStright(4000,.5));
+    	addSequential(new DriveStright(-4000,.5));
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());

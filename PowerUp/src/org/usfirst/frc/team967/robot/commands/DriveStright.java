@@ -16,7 +16,6 @@ public class DriveStright extends Command {
     	requires(Robot.kDriveBaseSubsystem);
     	counts = Distance;
     	power = Power;
-    	Robot.kDriveBaseSubsystem.zeroEncoders();
     	if(counts > 0){
     		power = -power;
     	}
@@ -24,6 +23,7 @@ public class DriveStright extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.kDriveBaseSubsystem.zeroEncoders();
     	Robot.kDriveBaseSubsystem.pidSetPoint(Robot.kDriveBaseSubsystem.getYaw());
     	Robot.kDriveBaseSubsystem.pidChangeState("Enable");
     }
