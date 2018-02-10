@@ -4,6 +4,8 @@
     padding: 0;
 }
 
+html { height: 100%; }
+
 ::-webkit-scrollbar {
     display: none;
 }
@@ -16,7 +18,57 @@ body {
     user-select: none;
     color: white;
     overflow: hidden;
-    background: #222;
+    background: #111;
+    height: 99%;
+    width: 100%;
+}
+
+.full {
+    width: 100%;
+    display: block;
+}
+
+header {
+    height: 30%;
+    border-bottom: 2px solid #ccc;
+    /* background-color: blue; /* USE FOR DEBUGGING */
+}
+
+main {
+    height: 70%;
+    /* background-color: red; /* USE FOR DEBUGGING */
+}
+
+.col {
+    display: inline-block;
+    /* border: 1px solid white; /* USE FOR DEBUGGING */
+    height: 100%;
+
+    /* DO NOT mess with that 49.75 */
+    /* IT IS THERE FOR A REASON... */
+    width: 49.75%;
+    padding: 10px;
+    vertical-align: middle;
+}
+
+.parent-col {
+    display: inline-block;
+    height: 100%;
+
+    /* DO NOT mess with that 49.75 */
+    /* IT IS THERE FOR A REASON... */
+    width: 49.75%;
+    vertical-align: middle;
+}
+
+#timer {
+    display: block;
+    color: gold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 10em;
+    height: 100%;
+    border: 2px solid goldenrod;
+    border-radius: 10px;
 }
 
 button, input[type="text"], input[type="number"], .select-container, select, option {
@@ -27,10 +79,11 @@ button, input[type="text"], input[type="number"], .select-container, select, opt
     padding: 6px 8px;
     cursor: pointer;
     outline: 0;
+    padding: 5px;
 }
 
 .select-container {
-    padding: 0;
+    padding: 5px 15px;;
     display: inline-block;
 }
 
@@ -41,68 +94,11 @@ select {
     height: 25px;
 }
 
-input[type="text"], input[type="number"] {
-    cursor: text;
-}
-
-input[type="checkbox"] {
-    -webkit-filter: saturate(0);
-    filter: saturate(0);
-}
-
-/* Major interface panes, aside, article, header, etc. */
-body > * {
-    padding: 10px;
-    position: fixed;
-    overflow: scroll;
-    background: #222;
-}
-
-#timer {
-    display: block;
-    height: 20vh;
-    width: 30vw;
-    top: 0;
-    left: 0;
-    font-size: 20vh;
-    line-height: .8;
-}
-
-header {
-    width: 20vw;
-    height: 20vh;
-    top: 0;
-    left: 30vw;
-    color: rgb(255, 88, 88);
-}
-
-#camera {
-    padding: 0;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 50vw;
-    height: 50vh;
-    overflow: hidden;
-    background-color: #333;
-    /* You'll need to mess with this a bit to get your camera to work. Replace the url with a live-updating image feed from your camera. Using other camera streaming systems will require some tweaking. */
-    /*background-image: url('LINK TO CAMERA SOURCE HERE');*/
-}
-
-article {
-    top: 0;
-    left: 50vw;
-    height: 100vh;
-    width: 35vw;
-}
-
 svg * {
-    stroke: white;
-    fill: #222;
-    stroke-width: 2;
     -webkit-transform-origin: center;
     -ms-transform-origin: center;
     transform-origin: center;
+    stroke-width: 2;
 }
 
 text {
@@ -113,13 +109,14 @@ text {
 }
 
 #gyro {
-    width: 175px;
-    height: 175px;
-    margin-left: 30px;
-    margin-top: 15px;
+    stroke: white;
+    fill: #111;
+    width: 100%;
+    height: 100%;
 }
 
 #gyro-arm {
+    stroke: gold;
     -webkit-transform-origin: bottom;
     -ms-transform-origin: bottom;
     transform-origin: bottom;
@@ -130,59 +127,62 @@ text {
     text-anchor: middle;
 }
 
-#robot-diagram {
-    position: absolute;
-    bottom: 1px;
-    right: 1vw;
+#camera {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #333;
+    /* You'll need to mess with this a bit to get your camera to work. Replace the url with a live-updating image feed from your camera. Using other camera streaming systems will require some tweaking. */
+    /*background-image: url('LINK TO CAMERA SOURCE HERE');*/
 }
 
-#robot-arm {
-    -webkit-transform-origin: right;
-    -ms-transform-origin: right;
-    transform-origin: right;
+#robot-diagram {
+    stroke: white;
+    fill: #222;
 }
 
 #team {
-    font-size: 28px;
+    font-size: 32px;
+    fill: rgb(255, 46, 46);
     letter-spacing: -1px;
 }
 
-aside {
-    right: 0;
-    top: 0;
-    width: 15vw;
-    height: 100vh;
+#status-bar {
+    border: 2px solid #ccc;
+    border-right: 0px;
+    border-radius: 10px 0px 0px 10px;
+    padding-left: 10px;
+    height: 100%;
 }
 
-aside > * {
-    margin-bottom: 20px;
+.center-align {
+    text-align: center;
 }
 
-#login {
-    position: fixed;
-    display: none;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.8)
+.right-align {
+    text-align: right;
 }
 
-body.login #login {
-    display: flex;
+.label {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: rgb(255, 46, 46);
+    font-size: 1.6em;
+    margin-left: 25px;
+    display: inline;
 }
 
-#login :disabled {
-    opacity: 0.6;
+.label-block {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: rgb(255, 46, 46);
+    font-size: 1.7em;
+    margin-bottom: 5px;
+    display: block;
 }
 
-#login > * {
-    height: 40px;
-}
+.readout { font-size: 1.5em; }
 
-#login > button {
-    margin-left: 5px;
-}
+.superbig { font-size: 3em; }
+
+hr { margin-bottom: 15px; }
+
+h1, h2, h3 { margin: 10px 0px; }
