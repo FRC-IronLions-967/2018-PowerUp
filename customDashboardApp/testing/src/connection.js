@@ -20,7 +20,7 @@ onkeydown = key => {
  * @param {boolean} connected
  */
 function onRobotConnection(connected) {
-    var state = connected ? 'Robot connected!' : 'Robot disconnected.';
+    var state = connected ? 'Robot connected.' : 'Robot disconnected.';
     console.log(state);
     ui.robotState.textContent = state;
     if (connected) {
@@ -38,14 +38,14 @@ function onRobotConnection(connected) {
         address.disabled = connect.disabled = false;
         connect.textContent = 'Connect';
         // Add the default address and select xxxx
-        address.value = 'roborio-xxxx.local';
+        address.value = '10.9.67.2';
         address.focus();
         address.setSelectionRange(8, 12);
         // On click try to connect and disable the input and the button
         connect.onclick = () => {
             ipc.send('connect', address.value);
             address.disabled = connect.disabled = true;
-            connect.textContent = 'Connecting...';
+            connect.textContent = 'Gimme a second...';
         };
     }
 }

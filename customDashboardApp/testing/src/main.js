@@ -5,9 +5,6 @@ const electron = require('electron');
 const wpilib_NT = require('wpilib-nt-client');
 const client = new wpilib_NT.Client();
 
-/** Module to control application life. */
-const app = electron.app;
-
 /** Module to create native browser window.*/
 const BrowserWindow = electron.BrowserWindow;
 
@@ -37,6 +34,8 @@ let clientDataListener = (key, val, valType, mesgType, id, flags) => {
         flags
     });
 };
+
+// This function creates the display window
 function createWindow() {
     // Attempt to connect to the localhost
     client.start((con, err) => {
@@ -49,7 +48,7 @@ function createWindow() {
             client.addListener(clientDataListener);
         };
         
-        // If the Window is ready than send the connection status to it
+        // If the Window is ready then send the connection status to it
         if (ready) {
             connectFunc();
         } else connected = connectFunc;
@@ -62,7 +61,7 @@ function createWindow() {
         if (connected) connected();
         connected = null;
     });
-    // When the user chooses the address of the bot than try to connect
+    // When the user chooses the address of the bot then try to connect
     ipc.on('connect', (ev, address, port) => {
         console.log(`Trying to connect to ${address}` + (port ? ':' + port : ''));
         let callback = (connected, err) => {
@@ -85,13 +84,13 @@ function createWindow() {
     });
     // Create the browser window.
     mainWindow = new BrowserWindow({
-        width: 1366,
-        height: 570,
-        // 1366x570 is a good standard height, but you may want to change this to fit your DriverStation's screen better.
-        // It's best if the dashboard takes up as much space as possible without covering the DriverStation application.
-        // The window is closed until the python server is ready
+        // Size to take up as much space as possible
+        // without covering driver station
+        width: 1920,
+        height: 756,
         show: false
     });
+    
     // Move window to top (left) of screen.
     mainWindow.setPosition(0, 0);
     // Load window.
@@ -117,10 +116,14 @@ function createWindow() {
     mainWindow.on('unresponsive', () => {
         console.log('Main Window is unresponsive');
     });
-    window.webContents.on('did-fail-load', () => {
+    mainWindow.webContents.on('did-fail-load', () => {
         console.log('window failed load');
     });
 }
+
+/** Module to control application life. */
+const app = electron.app;
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 app.on('ready', () => {
