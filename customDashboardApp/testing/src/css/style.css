@@ -155,6 +155,41 @@ text {
     height: 100%;
 }
 
+
+#login {
+    position: fixed;
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    /* CHANGE THE A VALUE TO 0.8 ONCE FINISHED TESTING */
+    /* IT LOOKS COOLER */
+    background-color: rgba(0, 0, 0, 0.8)
+}
+
+body.login #login {
+    display: flex;
+}
+
+
+#login :disabled {
+    opacity: 0.6;
+}
+
+
+#login > * {
+    height: 40px;
+}
+
+#login > button {
+    margin-left: 5px;
+}
+
 .center-align {
     text-align: center;
 }
@@ -186,3 +221,5 @@ text {
 hr { margin-bottom: 15px; }
 
 h1, h2, h3 { margin: 10px 0px; }
+
+
