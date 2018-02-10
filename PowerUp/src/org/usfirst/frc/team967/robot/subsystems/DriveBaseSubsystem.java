@@ -36,9 +36,11 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
 	
 	private WPI_TalonSRX driveLeftLead;
 	private WPI_TalonSRX driveLeftFollow;
+	private WPI_TalonSRX driveLeftFollowTwo;
 	
 	private WPI_TalonSRX driveRightLead;
 	private WPI_TalonSRX driveRightFollow;
+	private WPI_TalonSRX driveRightFollowTwo;
 		
 	private static final double deadBand = RobotConstraints.DriveSubsystem_deadBand;
 	
@@ -155,8 +157,10 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
 		
 		driveLeftLead = new WPI_TalonSRX(RobotMap.driveLeftLead);
 		driveLeftFollow = new WPI_TalonSRX(RobotMap.driveLeftFollow);
+		driveLeftFollowTwo = new WPI_TalonSRX(RobotMap.driveLeftFollowTwo);
 		driveRightLead = new WPI_TalonSRX(RobotMap.driveRightLead);
 		driveRightFollow = new WPI_TalonSRX(RobotMap.driveRightFollow);
+		driveRightFollowTwo = new WPI_TalonSRX(RobotMap.driveRightFollowTwo);
 		
 		driveLeftLead.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.QuadEncoder, 0, 0);
 		driveLeftLead.setSensorPhase(true);
@@ -166,9 +170,14 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
 		
 		driveLeftLead.setInverted(true);
 		driveLeftFollow.setInverted(true);
+		driveLeftFollowTwo.setInverted(true);
 		
 		driveLeftFollow.follow(driveLeftLead);
+//		driveLeftFollowTwo.follow(driveLeftFollow);
+		
 		driveRightFollow.follow(driveRightLead);
+//		driveRightFollowTwo.follow(driveRightFollow);
+		
 		
 		try { 
 			 gyro = new AHRS(SPI.Port.kMXP); // setting the navx to the mxp port 
@@ -233,7 +242,9 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
     
     public void move(double leftPower, double rightPower) {    		
     	driveLeftLead.set(leftPower);
+    	driveLeftFollowTwo.set(leftPower);
     	driveRightLead.set( rightPower);
+    	driveRightFollowTwo.set(rightPower);
     	SmartDashboard.putNumber("Left Drive Power",leftPower);
     	SmartDashboard.putNumber("Right Drive Power", -rightPower);
     }
