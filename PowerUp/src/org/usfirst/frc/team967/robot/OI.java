@@ -3,6 +3,7 @@ package org.usfirst.frc.team967.robot;
 import org.usfirst.frc.team967.lib.util.AxisButton;
 import org.usfirst.frc.team967.lib.util.POVButton;
 import org.usfirst.frc.team967.robot.commands.GyroPIDTurnToAngle;
+import org.usfirst.frc.team967.robot.commands.IntakeArms;
 import org.usfirst.frc.team967.robot.commands.T_ArcadeDrive;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -81,9 +82,9 @@ public class OI {
 //    	xbox0_b.whenPressed()new ;
 //    	xbox0_b.whenPressed();
 //    	xbox0_b.whenReleased();
-//    	xbox0_x.whenPressed();
+    	xbox0_x.whenPressed(new IntakeArms("open"));
 //    	xbox0_x.whenReleased();
-//    	xbox0_y.whenPressed();
+    	xbox0_y.whenPressed(new IntakeArms("closed"));
 //    	xbox0_y.whenReleased();
 //     	xbox0_lb.whenPressed();
 //    	xbox0_rb.whenPressed();

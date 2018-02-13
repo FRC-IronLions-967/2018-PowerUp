@@ -8,6 +8,8 @@ package org.usfirst.frc.team967.robot;
  */
 public class RobotMap {
 	
+	public static final int pcm = 5;
+	
 	// Drive Subsystem
 	
 	/* Last years robot map
@@ -30,4 +32,12 @@ public class RobotMap {
 	public static final int liftFollow = 0;
 	public static final int limitSwitchTop = 1;
 	public static final int limitSwitchBottom = 2;
+	
+	//Intake
+	public static final int leftIntake = 0;
+	public static final int rightIntake = 0;
+	public static final int wristIntake = 0;
+	public static final int armOpen = 6;
+	public static final int armClosed = 1;
+	
 }
