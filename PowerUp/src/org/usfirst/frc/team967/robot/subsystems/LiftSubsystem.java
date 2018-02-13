@@ -38,10 +38,21 @@ public class LiftSubsystem extends Subsystem {
     	limitSwitchTop = new DigitalInput(RobotMap.limitSwitchTop);
     	limitSwitchBottom = new DigitalInput(RobotMap.limitSwitchBottom);
     }
+        
+    public boolean IsTop()    { return limitSwitchTop.get();    }
+    public boolean IsBottom() { return limitSwitchBottom.get(); }
     
-    public void limit() {
-    	boolean isTop = limitSwitchTop.get();
-    	boolean isBottom = limitSwitchBottom.get();
+    public double Position() {
+    	if (IsTop() == true) {
+    		return 100;
+    	}
+    	else if (IsBottom() == true) {
+    		liftLead.getSensorCollection().setQuadraturePosition(0, 0);
+    		return 0;
+    	}
+    	else {
+    		return liftLead.getSensorCollection().getQuadraturePosition();
+    	}
     }
     
     public void moveLift(double power) {
@@ -52,8 +63,8 @@ public class LiftSubsystem extends Subsystem {
 	public void initDefaultCommand() {}
     
     public void log() {
-    	SmartDashboard.putNumber("Sensor position", liftLead.getSelectedSensorPosition(0));
-    	SmartDashboard.putNumber("Sensor Velocity", liftLead.getSelectedSensorVelocity(0));
+    	SmartDashboard.putNumber("Lift position", liftLead.getSelectedSensorPosition(0));
+    	SmartDashboard.putNumber("Lift Velocity", liftLead.getSelectedSensorVelocity(0));
     }
 }
 
