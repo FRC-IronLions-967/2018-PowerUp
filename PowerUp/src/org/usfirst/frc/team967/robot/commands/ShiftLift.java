@@ -7,21 +7,25 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class T_ArcadeDriveLookUp extends Command {
+public class ShiftLift extends Command {
 
-    public T_ArcadeDriveLookUp() {
+	private String Position;
+	
+    public ShiftLift(String position) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.kDriveBaseSubsystem);
+    	requires(Robot.kLiftSubsystem);
+    	
+    	Position = position;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.kLiftSubsystem.shiftLift(Position);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.kDriveBaseSubsystem.arcadeDrive(Robot.m_oi.getXbox0().getRawAxis(1), -Robot.m_oi.getXbox0().getRawAxis(4));
     }
 
     // Make this return true when this Command no longer needs to run execute()

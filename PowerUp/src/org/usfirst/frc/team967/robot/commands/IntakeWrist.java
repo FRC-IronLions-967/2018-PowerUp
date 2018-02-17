@@ -7,21 +7,22 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class T_ArcadeDriveLookUp extends Command {
+public class IntakeWrist extends Command {
 
-    public T_ArcadeDriveLookUp() {
+    public IntakeWrist() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.kDriveBaseSubsystem);
+    	requires(Robot.kIntakeSubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.kDriveBaseSubsystem.arcadeDrive(Robot.m_oi.getXbox0().getRawAxis(1), -Robot.m_oi.getXbox0().getRawAxis(4));
+    Robot.kIntakeSubsystem.intakeWrist((Robot.m_oi.getXbox1().getRawAxis(2) - Robot.m_oi.getXbox1().getRawAxis(3)) * .5);
     }
 
     // Make this return true when this Command no longer needs to run execute()

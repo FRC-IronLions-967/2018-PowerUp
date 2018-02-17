@@ -7,21 +7,26 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class LiftMoveTo extends Command {
+public class MoveTime extends Command {
 
-    public LiftMoveTo() {
+	public double time = 0;
+	
+    public MoveTime() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.kIntakeSubsystem);
+    	requires(Robot.kDriveBaseSubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	while (time < 200) {
+    		Robot.kDriveBaseSubsystem.move(.5, .5);
+    		time++;
+    	}   	
     }
 
     // Make this return true when this Command no longer needs to run execute()

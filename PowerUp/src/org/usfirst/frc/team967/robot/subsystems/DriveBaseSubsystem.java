@@ -168,9 +168,9 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
 		driveRightLead.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.QuadEncoder, 0, 0);
 		driveRightLead.setSensorPhase(false);
 		
-		driveLeftLead.setInverted(true);
-		driveLeftFollow.setInverted(true);
-		driveLeftFollowTwo.setInverted(true);
+		driveRightLead.setInverted(true);
+		driveRightFollow.setInverted(true);
+		driveRightFollowTwo.setInverted(true);
 		
 		driveLeftFollow.follow(driveLeftLead);
 //		driveLeftFollowTwo.follow(driveLeftFollow);

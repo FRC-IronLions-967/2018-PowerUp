@@ -2,10 +2,13 @@ package org.usfirst.frc.team967.robot.subsystems;
 
 import org.usfirst.frc.team967.robot.RobotConstraints;
 import org.usfirst.frc.team967.robot.RobotMap;
+import org.usfirst.frc.team967.robot.commands.LiftMove;
+import org.usfirst.frc.team967.robot.commands.T_ArcadeDriveLookUp;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -20,6 +23,8 @@ public class LiftSubsystem extends Subsystem {
 	
 	private DigitalInput limitSwitchTop;
 	private DigitalInput limitSwitchBottom;
+	
+	private DoubleSolenoid liftShift;
 	
 	private final double kP = RobotConstraints.LiftSubsystem_kP;
 	private final double kI = RobotConstraints.LiftSubsystem_kI;
@@ -37,6 +42,8 @@ public class LiftSubsystem extends Subsystem {
     	
     	limitSwitchTop = new DigitalInput(RobotMap.limitSwitchTop);
     	limitSwitchBottom = new DigitalInput(RobotMap.limitSwitchBottom);
+    	
+    	liftShift = new DoubleSolenoid(RobotMap.pcm, RobotMap.liftHigh,RobotMap.liftLow);
     }
         
     public boolean IsTop()    { return limitSwitchTop.get();    }
@@ -60,7 +67,17 @@ public class LiftSubsystem extends Subsystem {
 //    	liftFollow.set(power);
     }
     
-	public void initDefaultCommand() {}
+    public void shiftLift(String position) {
+    	if (position == "high") {
+    		liftShift.set(DoubleSolenoid.Value.kForward);
+    	} else if (position == "low") {
+    		liftShift.set(DoubleSolenoid.Value.kReverse);
+    	}
+    }
+    
+	public void initDefaultCommand() {
+		setDefaultCommand(new LiftMove());
+	}
     
     public void log() {
     	SmartDashboard.putNumber("Lift position", liftLead.getSelectedSensorPosition(0));

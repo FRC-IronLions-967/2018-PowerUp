@@ -1,6 +1,9 @@
 package org.usfirst.frc.team967.robot.subsystems;
 
 import org.usfirst.frc.team967.robot.RobotMap;
+import org.usfirst.frc.team967.robot.commands.IntakeDefaults;
+import org.usfirst.frc.team967.robot.commands.IntakePower;
+import org.usfirst.frc.team967.robot.commands.IntakeWrist;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -25,8 +28,6 @@ public class IntakeSubsystem extends Subsystem {
 		leftIntake = new WPI_TalonSRX(RobotMap.leftIntake);
 		rightIntake = new WPI_TalonSRX(RobotMap.rightIntake);
 		
-		leftIntake.follow(rightIntake);
-		
 		wristIntake = new WPI_TalonSRX(RobotMap.wristIntake);
 		
 		armShifter = new DoubleSolenoid(RobotMap.pcm, RobotMap.armOpen,RobotMap.armClosed);
@@ -34,6 +35,7 @@ public class IntakeSubsystem extends Subsystem {
 	
 	public void intakePower(double power) {
 		rightIntake.set(power);
+		leftIntake.set(-power);
 	}
 	
 	public void intakeWrist(double position) {
@@ -50,7 +52,7 @@ public class IntakeSubsystem extends Subsystem {
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new IntakeDefaults());
     }
 }
 

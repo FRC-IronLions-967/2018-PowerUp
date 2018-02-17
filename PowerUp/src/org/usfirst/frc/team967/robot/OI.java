@@ -4,6 +4,10 @@ import org.usfirst.frc.team967.lib.util.AxisButton;
 import org.usfirst.frc.team967.lib.util.POVButton;
 import org.usfirst.frc.team967.robot.commands.GyroPIDTurnToAngle;
 import org.usfirst.frc.team967.robot.commands.IntakeArms;
+import org.usfirst.frc.team967.robot.commands.IntakePower;
+import org.usfirst.frc.team967.robot.commands.IntakeWrist;
+import org.usfirst.frc.team967.robot.commands.LiftMove;
+import org.usfirst.frc.team967.robot.commands.ShiftLift;
 import org.usfirst.frc.team967.robot.commands.T_ArcadeDrive;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -65,13 +69,13 @@ public class OI {
     	JoystickButton xbox1_rightStickButton = new JoystickButton(xbox1, 10);
 		
     	//Setting the button variables to the commands for controller number 0
-    	xbox0povN.whenPressed(new GyroPIDTurnToAngle(0));
+//    	xbox0povN.whenPressed(new GyroPIDTurnToAngle(0));
 //    	xbox0povNE.whenPressed(new PIDTurnToAngle(45));
-    	xbox0povE.whenPressed(new GyroPIDTurnToAngle(90));
+//    	xbox0povE.whenPressed(new GyroPIDTurnToAngle(90));
 //    	xbox0povSE.whenPressed(new PIDTurnToAngle(135));
-    	xbox0povS.whenPressed(new GyroPIDTurnToAngle(180));
+//    	xbox0povS.whenPressed(new GyroPIDTurnToAngle(180));
 //    	xbox0povSW.whenPressed(new PIDTurnToAngle(225));
-    	xbox0povW.whenPressed(new GyroPIDTurnToAngle(270));
+//    	xbox0povW.whenPressed(new GyroPIDTurnToAngle(270));
 //    	xbox0povNW.whenPressed(new PIDTurnToAngle(315));
 //     	xbox0_lT.whenPressed();
 //     	xbox0_lT.whenReleased();
@@ -79,15 +83,15 @@ public class OI {
 //     	xbox0_rT.whenReleased();
     	xbox0_a.whenPressed(new T_ArcadeDrive());
 //    	xbox0_a.whenReleased();
-//    	xbox0_b.whenPressed()new ;
+//    	xbox0_b.whenPressed(new IntakePower());
 //    	xbox0_b.whenPressed();
 //    	xbox0_b.whenReleased();
-    	xbox0_x.whenPressed(new IntakeArms("open"));
-//    	xbox0_x.whenReleased();
-    	xbox0_y.whenPressed(new IntakeArms("closed"));
+//    	xbox0_x.whenPressed(new IntakeArms("open"));
+////    	xbox0_x.whenReleased();
+//    	xbox0_y.whenPressed(new IntakeArms("closed"));
 //    	xbox0_y.whenReleased();
-//     	xbox0_lb.whenPressed();
-//    	xbox0_rb.whenPressed();
+//     	xbox0_lb.whenPressed(new ShiftLift("high"));
+//    	xbox0_rb.whenPressed(new ShiftLift("low"));
 //    	xbox0_rb.whenReleased();
 //    	xbox0_back.whenPressed();
 //    	xbox0_back.whenReleased();
@@ -105,24 +109,23 @@ public class OI {
 //     	xbox1_lT.whenReleased();
 //     	xbox1_rT.whenPressed();
 //     	xbox1_rT.whenReleased();
-//    	xbox1_a.whenPressed();
+//    	xbox1_a.whenPressed(new IntakeWrist());
 //    	xbox1_a.whenReleased();
-//    	xbox1_b.whenPressed();
-//    	xbox1_b.whenPressed();
+//    	xbox1_b.whenPressed(new IntakePower());
 //    	xbox1_b.whenReleased();
-//    	xbox1_x.whenPressed();
-//    	xbox1_x.whenReleased();
-//    	xbox1_y.whenPressed();
+    	xbox1_x.whenPressed(new IntakeArms("open"));
+//    	xbox0_x.whenReleased();
+    	xbox1_y.whenPressed(new IntakeArms("closed"));
 //    	xbox1_y.whenReleased();
-//     	xbox1_lb.whenPressed();
-//    	xbox1_rb.whenPressed();
+     	xbox1_lb.whenPressed(new ShiftLift("high"));
+    	xbox1_rb.whenPressed(new ShiftLift("low"));
 //    	xbox1_rb.whenReleased();
-//    	xbox1_back.whenPressed();
+    	xbox1_back.whenPressed(new LiftMove());
 //    	xbox1_back.whenReleased();
 //    	xbox1_start.whenPressed();
 //    	xbox1_start.whenReleased();
-//    	xbox1_leftStickButton.whenPressed();
-//    	xbox1_rightStickButton.whenPressed(); 	
+    	xbox1_leftStickButton.whenPressed(new LiftMove());
+    	xbox1_rightStickButton.whenPressed(new IntakePower()); 	
 	}
 	
 	public void log(){

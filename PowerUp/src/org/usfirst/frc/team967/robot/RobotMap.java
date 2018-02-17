@@ -8,7 +8,7 @@ package org.usfirst.frc.team967.robot;
  */
 public class RobotMap {
 	
-	public static final int pcm = 5;
+	public static final int pcm = 1;
 	
 	// Drive Subsystem
 	
@@ -19,25 +19,28 @@ public class RobotMap {
 	public static final int driveRightFollow = 1;	
 	*/
 	
-	public static final int driveLeftLead = 13;
-	public static final int driveLeftFollow = 12;
-	public static final int driveLeftFollowTwo = 20;
-	public static final int driveRightLead = 9;
-	public static final int driveRightFollow = 10;	
-	public static final int driveRightFollowTwo = 11;
+	public static final int driveLeftLead = 11;
+	public static final int driveLeftFollow = 10;
+	public static final int driveLeftFollowTwo = 9;
+	public static final int driveRightLead = 7;
+	public static final int driveRightFollow = 6;	
+	public static final int driveRightFollowTwo = 8;
 	
 	
 	// Lift Subsystem
-	public static final int liftLead = 0;
-	public static final int liftFollow = 0;
+	public static final int liftLead = 4;
+	public static final int liftFollow = 5;
 	public static final int limitSwitchTop = 1;
 	public static final int limitSwitchBottom = 2;
 	
+	public static final int liftHigh = 6;
+	public static final int liftLow = 1;
+	
 	//Intake
-	public static final int leftIntake = 0;
-	public static final int rightIntake = 0;
-	public static final int wristIntake = 0;
-	public static final int armOpen = 6;
-	public static final int armClosed = 1;
+	public static final int leftIntake = 3;
+	public static final int rightIntake = 2;
+	public static final int wristIntake = 1;
+	public static final int armOpen = 7;
+	public static final int armClosed = 0;
 	
 }
