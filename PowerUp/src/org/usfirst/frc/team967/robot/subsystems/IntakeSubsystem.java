@@ -18,8 +18,6 @@ public class IntakeSubsystem extends Subsystem {
 	private WPI_TalonSRX leftIntake;
 	private WPI_TalonSRX rightIntake;
 	
-	private WPI_TalonSRX wristIntake;
-	
 	private DoubleSolenoid armShifter;
 	
 	public double Position = 0;
@@ -28,18 +26,12 @@ public class IntakeSubsystem extends Subsystem {
 		leftIntake = new WPI_TalonSRX(RobotMap.leftIntake);
 		rightIntake = new WPI_TalonSRX(RobotMap.rightIntake);
 		
-		wristIntake = new WPI_TalonSRX(RobotMap.wristIntake);
-		
 		armShifter = new DoubleSolenoid(RobotMap.pcm, RobotMap.armOpen,RobotMap.armClosed);
 	}
 	
 	public void intakePower(double power) {
 		rightIntake.set(power);
 		leftIntake.set(-power);
-	}
-	
-	public void intakeWrist(double position) {
-		wristIntake.set(position);	
 	}
 	
 	public void armShifterOpen() {
@@ -52,7 +44,7 @@ public class IntakeSubsystem extends Subsystem {
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new IntakeDefaults());
+        setDefaultCommand(new IntakePower());
     }
 }
 

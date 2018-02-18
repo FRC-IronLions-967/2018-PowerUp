@@ -7,8 +7,10 @@ import org.usfirst.frc.team967.robot.commands.IntakeArms;
 import org.usfirst.frc.team967.robot.commands.IntakePower;
 import org.usfirst.frc.team967.robot.commands.IntakeWrist;
 import org.usfirst.frc.team967.robot.commands.LiftMove;
+import org.usfirst.frc.team967.robot.commands.ResetYaw;
 import org.usfirst.frc.team967.robot.commands.ShiftLift;
 import org.usfirst.frc.team967.robot.commands.T_ArcadeDrive;
+import org.usfirst.frc.team967.robot.commands.ZeroEncodersDriveBase;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -69,26 +71,26 @@ public class OI {
     	JoystickButton xbox1_rightStickButton = new JoystickButton(xbox1, 10);
 		
     	//Setting the button variables to the commands for controller number 0
-//    	xbox0povN.whenPressed(new GyroPIDTurnToAngle(0));
-//    	xbox0povNE.whenPressed(new PIDTurnToAngle(45));
-//    	xbox0povE.whenPressed(new GyroPIDTurnToAngle(90));
-//    	xbox0povSE.whenPressed(new PIDTurnToAngle(135));
-//    	xbox0povS.whenPressed(new GyroPIDTurnToAngle(180));
-//    	xbox0povSW.whenPressed(new PIDTurnToAngle(225));
-//    	xbox0povW.whenPressed(new GyroPIDTurnToAngle(270));
-//    	xbox0povNW.whenPressed(new PIDTurnToAngle(315));
+    	xbox0povN.whenPressed(new GyroPIDTurnToAngle(0));
+    	xbox0povNE.whenPressed(new GyroPIDTurnToAngle(45));
+    	xbox0povE.whenPressed(new GyroPIDTurnToAngle(90));
+    	xbox0povSE.whenPressed(new GyroPIDTurnToAngle(135));
+    	xbox0povS.whenPressed(new GyroPIDTurnToAngle(180));
+    	xbox0povSW.whenPressed(new GyroPIDTurnToAngle(225));
+    	xbox0povW.whenPressed(new GyroPIDTurnToAngle(270));
+    	xbox0povNW.whenPressed(new GyroPIDTurnToAngle(315));
 //     	xbox0_lT.whenPressed();
 //     	xbox0_lT.whenReleased();
 //     	xbox0_rT.whenPressed();
 //     	xbox0_rT.whenReleased();
     	xbox0_a.whenPressed(new T_ArcadeDrive());
 //    	xbox0_a.whenReleased();
-//    	xbox0_b.whenPressed(new IntakePower());
+    	xbox0_b.whenPressed(new ResetYaw());
 //    	xbox0_b.whenPressed();
 //    	xbox0_b.whenReleased();
 //    	xbox0_x.whenPressed(new IntakeArms("open"));
 ////    	xbox0_x.whenReleased();
-//    	xbox0_y.whenPressed(new IntakeArms("closed"));
+    	xbox0_y.whenPressed(new ZeroEncodersDriveBase());
 //    	xbox0_y.whenReleased();
 //     	xbox0_lb.whenPressed(new ShiftLift("high"));
 //    	xbox0_rb.whenPressed(new ShiftLift("low"));

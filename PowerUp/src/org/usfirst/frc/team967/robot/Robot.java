@@ -10,6 +10,7 @@ import org.usfirst.frc.team967.robot.commands.auto.A_RedRight;
 import org.usfirst.frc.team967.robot.subsystems.DriveBaseSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.LiftSubsystem;
+import org.usfirst.frc.team967.robot.subsystems.WristSubsystem;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -31,7 +32,9 @@ public class Robot extends TimedRobot {
 	public static final DriveBaseSubsystem kDriveBaseSubsystem = new DriveBaseSubsystem();
 	public static final IntakeSubsystem kIntakeSubsystem = new IntakeSubsystem();
 	public static final LiftSubsystem kLiftSubsystem = new LiftSubsystem();
+//	public static final WristSubsystem kWristsubsystem = new WristSubsystem();
 	public static OI m_oi;
+	public static final WristSubsystem kWristsubsystem = new WristSubsystem();
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -87,12 +90,12 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-//		m_autonomousCommand = m_chooser.getSelected();
-//		
-//		// schedule the autonomous command (example)
-//		if (m_autonomousCommand != null) {
-//			m_autonomousCommand.start();
-//		}
+		m_autonomousCommand = m_chooser.getSelected();
+		
+		// schedule the autonomous command (example)
+		if (m_autonomousCommand != null) {
+			m_autonomousCommand.start();
+		}
 	}
 
 	/**

@@ -26,10 +26,10 @@ public class LiftSubsystem extends Subsystem {
 	
 	private DoubleSolenoid liftShift;
 	
-	private final double kP = RobotConstraints.LiftSubsystem_kP;
-	private final double kI = RobotConstraints.LiftSubsystem_kI;
-	private final double kD = RobotConstraints.LiftSubsystem_kD;
-	private final double kToleranceDegrees = RobotConstraints.LiftSubsystem_kTolerance;
+//	private final double kP = RobotConstraints.LiftSubsystem_kP;
+//	private final double kI = RobotConstraints.LiftSubsystem_kI;
+//	private final double kD = RobotConstraints.LiftSubsystem_kD;
+//	private final double kToleranceDegrees = RobotConstraints.LiftSubsystem_kTolerance;
 	
     public LiftSubsystem(){
     	liftLead = new WPI_TalonSRX(RobotMap.liftLead);
