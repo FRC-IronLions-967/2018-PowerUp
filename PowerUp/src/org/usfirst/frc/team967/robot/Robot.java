@@ -90,7 +90,33 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		m_autonomousCommand = m_chooser.getSelected();
+		String command = SmartDashboard.getString("autonomous/selected", "Default Auto");
+		switch(command) {
+			case "Blue Left":
+				m_autonomousCommand = new A_BlueLeft();
+				break;
+			case "Blue Center":
+				m_autonomousCommand = new A_BlueCenter();
+				break;
+			case "Blue Right":
+				m_autonomousCommand = new A_BlueRight();
+				break;
+			case "Red Left":
+				m_autonomousCommand = new A_RedLeft();
+				break;
+			case "Red Center":
+				m_autonomousCommand = new A_RedCenter();
+				break;
+			case "Red Right":
+				m_autonomousCommand = new A_RedRight();
+				break;
+			case "Default Auto":
+			default:
+				m_autonomousCommand = new A_DriveForward();
+		}
+		
+		
+//		m_autonomousCommand = m_chooser.getSelected();
 		
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {

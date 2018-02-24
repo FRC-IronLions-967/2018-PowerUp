@@ -16,11 +16,13 @@ public class A_BlueCenter_LLL extends CommandGroup {
     public A_BlueCenter_LLL() {
     	
     	addSequential(new AutoStartUpResets());
+
+    	addSequential(new DriveStright(-1000,1));
     	
-    	addSequential(new DriveStright(105 * 4.5, .6));
-    	addSequential(new GyroPIDTurnToAngle(-90));
-    	addSequential(new DriveStright(105 * 3.3, .6));
-    	addSequential(new GyroPIDTurnToAngle(90));
+//    	addSequential(new DriveStright(105 * 4.5, .6));
+//    	addSequential(new GyroPIDTurnToAngle(-90));
+//    	addSequential(new DriveStright(105 * 3.3, .6));
+//    	addSequential(new GyroPIDTurnToAngle(90));
     	
 //    	addSequential(new LiftMove());
     	

@@ -46,7 +46,7 @@ main {
 
     /* DO NOT mess with that 49.75 */
     /* IT IS THERE FOR A REASON... */
-    width: 49.75%;
+    width: 49.5%;
     padding: 10px;
     vertical-align: middle;
 }
@@ -57,7 +57,7 @@ main {
 
     /* DO NOT mess with that 49.75 */
     /* IT IS THERE FOR A REASON... */
-    width: 49.75%;
+    width: 49.5%;
     vertical-align: middle;
 }
 
@@ -133,7 +133,8 @@ text {
     overflow: hidden;
     background-color: #333;
     /* You'll need to mess with this a bit to get your camera to work. Replace the url with a live-updating image feed from your camera. Using other camera streaming systems will require some tweaking. */
-    /*background-image: url('LINK TO CAMERA SOURCE HERE');*/
+    background-image: url('http://roboRIO-967-FRC.local:1181/?action=stream');
+    background-repeat: no-repeat;
 }
 
 #robot-diagram {

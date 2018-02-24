@@ -91,14 +91,15 @@ NetworkTables.addKeyListener('/robot/time', (key, value) => {
     ui.timer.innerHTML = value < 0 ? '0:00' : Math.floor(value / 60) + ':' + (value % 60 < 10 ? '0' : '') + value % 60;
 });
 
-/* Elevator diagram
+// Elevator diagram
 NetworkTables.addKeyListener('/SmartDashboard/elevator', (key, value) => {
-
+    var armAngle = value * 3 / 20 - 45;
+    // Rotate the arm in diagram to match real arm
+    ui.robotDiagram.arm.style.transform = `rotate(${armAngle}deg)`;
 });
-*/
 
 // Load list of prewritten autonomous modes
-NetworkTables.addKeyListener('/SmartDashboard/autonomous/modes', (key, value) => {
+NetworkTables.addKeyListener('/SmartDashboard/Auto mode/options', (key, value) => {
     // Clear previous list
     while (ui.autoSelect.firstChild) {
         ui.autoSelect.removeChild(ui.autoSelect.firstChild);
@@ -116,7 +117,7 @@ NetworkTables.addKeyListener('/SmartDashboard/autonomous/modes', (key, value) =>
 });
 
 // Load list of prewritten autonomous modes
-NetworkTables.addKeyListener('/SmartDashboard/autonomous/selected', (key, value) => {
+NetworkTables.addKeyListener('/SmartDashboard/Auto mode/options', (key, value) => {
     ui.autoSelect.value = value;
 });
 
