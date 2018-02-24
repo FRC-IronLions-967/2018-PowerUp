@@ -48,7 +48,7 @@ function onRobotConnection(connected) {
         connect.onclick = () => {
             ipc.send('connect', address.value);
             address.disabled = connect.disabled = true;
-            connect.textContent = '...';
+            connect.textContent = "Connecting...';
         };
     }
 }
