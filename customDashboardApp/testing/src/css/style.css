@@ -46,7 +46,7 @@ main {
 
     /* DO NOT mess with that 49.75 */
     /* IT IS THERE FOR A REASON... */
-    width: 49.4%;
+    width: 49.75%;
     padding: 10px;
     vertical-align: middle;
 }
@@ -57,7 +57,7 @@ main {
 
     /* DO NOT mess with that 49.75 */
     /* IT IS THERE FOR A REASON... */
-    width: 49.4%;
+    width: 49.75%;
     vertical-align: middle;
 }
 
@@ -188,36 +188,47 @@ hr { margin-bottom: 15px; }
 h1, h2, h3 { margin: 10px 0px; }
 
 /* login thingy css */
-#login {
+.greybox {
     position: fixed;
-    display: none;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    bottom: 0;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-
-    /* CHANGE THE A VALUE TO 0.8 ONCE FINISHED TESTING */
-    /* IT LOOKS COOLER */
-    background-color: rgba(0, 0, 0, 0)
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
 }
 
-body.login #login {
-    display: flex;
+body.login-close > .greybox {
+    display: none
 }
 
+#login {
+    text-align: center;
+    display: block;
+    margin: 14em auto 0 auto;
+    width: 18em;
+    overflow: hidden;
+    animation: 1s linear;
+    padding: 4px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+body.login-close #login {
+    opacity: 1;
+    width: 0;
+    animation: 1s linear;
+}
 
 #login :disabled {
-    opacity: 0.6;
+    filter: opacity(0.6)
 }
 
-
-#login > * {
-    height: 40px;
+#login > button{
+    width:6em
 }
 
-#login > button {
-    margin-left: 5px;
+#connect{
+    text-align: center;
 }
