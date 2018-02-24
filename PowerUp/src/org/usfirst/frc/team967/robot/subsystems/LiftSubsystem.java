@@ -25,6 +25,7 @@ public class LiftSubsystem extends Subsystem {
 	private DigitalInput limitSwitchBottom;
 	
 	private DoubleSolenoid liftShift;
+	private DoubleSolenoid busterBrake;
 	
 //	private final double kP = RobotConstraints.LiftSubsystem_kP;
 //	private final double kI = RobotConstraints.LiftSubsystem_kI;
@@ -44,6 +45,7 @@ public class LiftSubsystem extends Subsystem {
     	limitSwitchBottom = new DigitalInput(RobotMap.limitSwitchBottom);
     	
     	liftShift = new DoubleSolenoid(RobotMap.pcm, RobotMap.liftHigh,RobotMap.liftLow);
+    	busterBrake = new DoubleSolenoid(RobotMap.pcm, RobotMap.busterBrakeIn, RobotMap.busterBrakeOut);
     }
         
     public boolean IsTop()    { return limitSwitchTop.get();    }
@@ -75,6 +77,14 @@ public class LiftSubsystem extends Subsystem {
     	}
     }
     
+    public void enableBrake() {
+    	busterBrake.set(DoubleSolenoid.Value.kForward);
+    }
+    
+   public void removeBrake() {
+	   busterBrake.set(DoubleSolenoid.Value.kReverse);
+   }
+    
 	public void initDefaultCommand() {
 		setDefaultCommand(new LiftMove());
 	}
@@ -82,6 +92,10 @@ public class LiftSubsystem extends Subsystem {
     public void log() {
     	SmartDashboard.putNumber("Lift position", liftLead.getSelectedSensorPosition(0));
     	SmartDashboard.putNumber("Lift Velocity", liftLead.getSelectedSensorVelocity(0));
+    	SmartDashboard.putNumber("LiftAmpsLead", liftLead.getOutputCurrent());
+    	SmartDashboard.putNumber("LiftAmpsFollow", liftFollow.getOutputCurrent());
+    	
+    	
     }
 }
 

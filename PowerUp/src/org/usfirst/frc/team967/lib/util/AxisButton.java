@@ -13,7 +13,7 @@ public class AxisButton extends Button {
 	boolean exitStatus;
 	
 	
-	public AxisButton(Joystick stick, int axis, double setpointvalue, int feature){
+	public AxisButton(Joystick stick, int axis, double setpointvalue, int feature) {
 		joy = stick;
 		Axis = axis;
 		SetpointValue = setpointvalue;
@@ -21,20 +21,20 @@ public class AxisButton extends Button {
 		currentValue = joy.getRawAxis(axis);
 	}
 	
-	public boolean get(){
+	public boolean get() {
 		
-		switch (Feature){
+		switch (Feature) {
 			case 1: if(joy.getRawAxis(Axis) > SetpointValue){
 						exitStatus = true;
 					}	
-					else{
+					else {
 						exitStatus = false;
 					}
 					break;
 			case 2: if(lastValue == currentValue){
 						exitStatus = false;
 					}
-					else{
+					else {
 						exitStatus = true;
 					}
 					break;

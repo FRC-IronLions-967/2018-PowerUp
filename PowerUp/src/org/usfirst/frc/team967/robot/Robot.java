@@ -13,6 +13,7 @@ import org.usfirst.frc.team967.robot.subsystems.LiftSubsystem;
 import org.usfirst.frc.team967.robot.subsystems.WristSubsystem;
 
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -32,7 +33,6 @@ public class Robot extends TimedRobot {
 	public static final DriveBaseSubsystem kDriveBaseSubsystem = new DriveBaseSubsystem();
 	public static final IntakeSubsystem kIntakeSubsystem = new IntakeSubsystem();
 	public static final LiftSubsystem kLiftSubsystem = new LiftSubsystem();
-//	public static final WristSubsystem kWristsubsystem = new WristSubsystem();
 	public static OI m_oi;
 	public static final WristSubsystem kWristsubsystem = new WristSubsystem();
 
@@ -137,6 +137,8 @@ public class Robot extends TimedRobot {
 	
 	public void log() {
 		kDriveBaseSubsystem.log();
+		kLiftSubsystem.log();
+		SmartDashboard.putNumber("Voltage", RobotController.getBatteryVoltage());
 	}
 	
 }

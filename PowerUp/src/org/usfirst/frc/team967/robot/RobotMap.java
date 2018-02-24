@@ -36,11 +36,16 @@ public class RobotMap {
 	public static final int liftHigh = 6;
 	public static final int liftLow = 1;
 	
+	public static final int busterBrakeIn = 5;
+	public static final int busterBrakeOut = 2;
+	
 	//Intake
 	public static final int leftIntake = 3;
 	public static final int rightIntake = 2;
-	public static final int wristIntake = 1;
 	public static final int armOpen = 7;
 	public static final int armClosed = 0;
+	
+	//Wrist
+	public static final int wrist = 1;
 	
 }

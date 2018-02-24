@@ -13,7 +13,7 @@ public class WristSubsystem extends Subsystem {
 	private WPI_TalonSRX wristIntake;
 
 	public WristSubsystem() {
-		wristIntake = new WPI_TalonSRX(RobotMap.wristIntake);
+		wristIntake = new WPI_TalonSRX(RobotMap.wrist);
 	}
 	
 	public void intakeWrist(double position) {
@@ -23,7 +23,7 @@ public class WristSubsystem extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-//    	setDefaultCommand(new IntakeWrist());
+    	setDefaultCommand(new IntakeWrist());
     }
 }
 

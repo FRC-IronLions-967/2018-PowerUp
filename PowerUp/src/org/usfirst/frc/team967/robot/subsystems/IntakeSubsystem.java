@@ -1,10 +1,7 @@
 package org.usfirst.frc.team967.robot.subsystems;
 
 import org.usfirst.frc.team967.robot.RobotMap;
-import org.usfirst.frc.team967.robot.commands.IntakeDefaults;
 import org.usfirst.frc.team967.robot.commands.IntakePower;
-import org.usfirst.frc.team967.robot.commands.IntakeWrist;
-
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;

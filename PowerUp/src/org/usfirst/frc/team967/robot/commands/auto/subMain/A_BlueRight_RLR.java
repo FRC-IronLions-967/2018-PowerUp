@@ -1,5 +1,7 @@
 package org.usfirst.frc.team967.robot.commands.auto.subMain;
 
+import org.usfirst.frc.team967.robot.commands.DriveStright;
+import org.usfirst.frc.team967.robot.commands.GyroPIDTurnToAngle;
 import org.usfirst.frc.team967.robot.commands.auto.AutoEndResets;
 import org.usfirst.frc.team967.robot.commands.auto.AutoStartUpResets;
 
@@ -14,6 +16,10 @@ public class A_BlueRight_RLR extends CommandGroup {
     public A_BlueRight_RLR() {
     	
     	addSequential(new AutoStartUpResets());
+    	
+    	addSequential(new DriveStright(105 * 11.5, .6));
+    	addSequential(new GyroPIDTurnToAngle(-30));
+    	
     	addSequential(new AutoEndResets());
     	
         // Add Commands here:

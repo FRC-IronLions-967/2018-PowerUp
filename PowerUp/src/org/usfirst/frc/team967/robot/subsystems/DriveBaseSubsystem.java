@@ -309,10 +309,10 @@ public class DriveBaseSubsystem extends Subsystem implements PIDOutput{
     }
     
 	public double getLeftEncoder(){
-		return driveLeftLead.getSensorCollection().getQuadraturePosition();
+		return -driveLeftLead.getSensorCollection().getQuadraturePosition();
 	}
 	public double getRightEncoder(){
-		return -driveRightLead.getSensorCollection().getQuadraturePosition();
+		return driveRightLead.getSensorCollection().getQuadraturePosition();
 	}
 	
 	public boolean zeroEncoders(){	

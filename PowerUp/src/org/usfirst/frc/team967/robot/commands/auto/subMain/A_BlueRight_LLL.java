@@ -17,9 +17,13 @@ public class A_BlueRight_LLL extends CommandGroup {
     public A_BlueRight_LLL() {
     	
     	addSequential(new AutoStartUpResets());
-    	addSequential(new DriveStright(4000,.5)); // Change value to reflect distance 
-    	addSequential(new GyroPIDTurnToAngle(-90)); // Needs Testing 
-    	addSequential(new DriveStright(500,.5)); // Change value to reflect distance
+    	
+    	addSequential(new DriveStright(105 * 11.5, .6));
+    	addSequential(new GyroPIDTurnToAngle(90));
+    	addSequential(new DriveStright(105 * 3, .6));
+    	addSequential(new GyroPIDTurnToAngle(-90));
+    	addSequential(new DriveStright(105 * 3, .6));
+    	
     	addSequential(new AutoEndResets());
     	
     	
