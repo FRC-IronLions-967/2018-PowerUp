@@ -84,16 +84,23 @@
 
                     <div>
                         <b class="label-block">Connection:</b>
-                        <span class="readout" id="left-drive-powa">Not Connected</span>
+                        <span class="readout" id="robot-state">Not Connected</span>
+                    </div>
+                    
+                    <div>
+                        <b class="label-block">Gyro:</b>
+                        <span class="readout" id="gyro-connection">Not Connected</span>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <div id="login">
-        <input id="connect-address" type="text" value="10.9.67.2" disabled>
-        <button id="connect" disabled>Connecting</button>
+    <div class="greybox">
+        <div id="login">
+            <input id="connect-address" type="text" value="localhost" disabled>
+            <button id="connect" disabled>Connecting</button>
+        </div>
     </div>
 
     <script src="networktables/networktables.js"></script>
