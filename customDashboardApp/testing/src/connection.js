@@ -39,13 +39,16 @@ function onRobotConnection(connected) {
         connect.textContent = 'Connect';
         // Add the default address and select xxxx
         address.value = '10.9.67.2';
+
+        // USB address.value = '172.22.11.2';
+
         address.focus();
         address.setSelectionRange(8, 12);
         // On click try to connect and disable the input and the button
         connect.onclick = () => {
             ipc.send('connect', address.value);
             address.disabled = connect.disabled = true;
-            connect.textContent = 'Gimme a second...';
+            connect.textContent = '...';
         };
     }
 }
