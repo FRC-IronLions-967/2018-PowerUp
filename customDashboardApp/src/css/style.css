@@ -132,9 +132,8 @@ text {
     height: 100%;
     overflow: hidden;
     background-color: #333;
-    /* You'll need to mess with this a bit to get your camera to work. Replace the url with a live-updating image feed from your camera. Using other camera streaming systems will require some tweaking. */
-    background-image: url('http://roboRIO-967-FRC.local:1181/?action=stream');
-    background-repeat: no-repeat;
+    /* You'll need to mess with this a bit to get your camera to work. 
+    Replace the url with a live-updating image feed from your camera. Using other camera streaming systems will require some tweaking. */
 }
 
 #robot-diagram {
@@ -187,6 +186,14 @@ text {
 hr { margin-bottom: 15px; }
 
 h1, h2, h3 { margin: 10px 0px; }
+
+meter {
+    width: 100%;
+    background-color: red;
+    -webkit-text-fill-color: red;
+}
+
+
 
 /* login thingy css */
 #login {
