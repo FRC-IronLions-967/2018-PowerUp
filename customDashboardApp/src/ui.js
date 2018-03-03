@@ -86,9 +86,10 @@ NetworkTables.addKeyListener('/SmartDashbourd/Right Drive Power', (key, value)=>
 
 // Timer
 NetworkTables.addKeyListener('/robot/time', (key, value) => {
-    // This is an example of how a dashboard could display the remaining time in a match.
     // We assume here that value is an integer representing the number of seconds left.
-    ui.timer.innerHTML = value < 0 ? '0:00' : Math.floor(value / 60) + ':' + (value % 60 < 10 ? '0' : '') + value % 60;
+    var min = (int) (value / 60);
+    var sec = value % 60;
+    ui.timer.innerHTML = min + ":" + sec;
 });
 
 // Elevator diagram
