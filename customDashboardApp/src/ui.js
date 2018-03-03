@@ -87,7 +87,7 @@ NetworkTables.addKeyListener('/SmartDashbourd/Right Drive Power', (key, value)=>
 // Timer
 NetworkTables.addKeyListener('/robot/time', (key, value) => {
     // We assume here that value is an integer representing the number of seconds left.
-    var min = (int) (value / 60);
+    var min = Math.floor(value / 60);
     var sec = value % 60;
     ui.timer.innerHTML = min + ":" + sec;
 });
