@@ -36,16 +36,6 @@
                         <!-- This gets populated by JS -->
                     </select>
                 </span>
-    
-                <span>
-                    <b class="label">Left Drive:</b>
-                    <span class="readout" id="left-drive-powa">Not Enabled</span>
-                </span>
-    
-                <span>
-                    <b class="label">Right Drive:</b>
-                    <span class="readout" id="right-drive-powa">Not Enabled</span>
-                </span>
             </div>
         </div>
     </header>
@@ -86,11 +76,22 @@
                         <b class="label-block">Connection:</b>
                         <span class="readout" id="robot-state">Not Connected</span>
                     </div>
-                    
+
                     <div>
-                        <b class="label-block">Gyro:</b>
-                        <span class="readout" id="gyro-connection">Not Connected</span>
+                        <b class="label-block">Left Drive:</b>
+                        <!--<span class="readout" id="left-drive-powa">Not Enabled</span>-->
+                        <meter id="left-drive-powa" min="-100" max="100" value="0"></meter>
                     </div>
+        
+                    <div>
+                        <b class="label-block">Right Drive:</b>
+                        <span class="readout" id="right-drive-powa">Not Enabled</span>
+                    </div>
+                    
+                    <!--<div>
+                        <b class="label-block">Gyro:</b>
+                        <span class="readout" id="gyro-connection"> </span>
+                    </div>-->
                 </div>
             </div>
         </div>
