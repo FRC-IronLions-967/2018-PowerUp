@@ -5,6 +5,7 @@ ipc = require('electron').ipcRenderer;
 let ui = {
     timer: document.getElementById('timer'),
     robotState: document.getElementById('robot-state').firstChild,
+    gyroConnection: document.getElementById('gyro-connection'),
     gyro: {
         container: document.getElementById('gyro'),
         val: 0,
@@ -13,6 +14,7 @@ let ui = {
         arm: document.getElementById('gyro-arm'),
         number: document.getElementById('gyro-number')
     },
+    camera: document.getElementById('camera'),
     robotDiagram: {
         arm: document.getElementById('robot-arm')
     },
@@ -62,6 +64,13 @@ function onRobotConnection(connected) {
 }
 
 /* KEY LISTENERS */
+
+/* Unnecessary?
+NetworkTables.addKeyListener('/SmartDashboard/IMU_Connected', (key, value) => {
+    ui.gyroConnection = '' + value;
+});
+*/
+
 // Gyro rotation
 let updateGyro = (key, value) => {
     ui.gyro.val = value;
@@ -76,12 +85,12 @@ NetworkTables.addKeyListener('/SmartDashboard/IMU_Yaw', updateGyro);
 
 // Left motor display
 NetworkTables.addKeyListener('/SmartDashboard/Left Drive Power', (key, value) => {
-    ui.leftDrivePowa.innerHTML = '' + value;
+    ui.leftDrivePowa.value = '' + Math.round(value * 100);
 });
 
 // Right motor display
-NetworkTables.addKeyListener('/SmartDashbourd/Right Drive Power', (key, value)=> {
-    ui.rightDrivePowa.innerHTML = '' + value;
+NetworkTables.addKeyListener('/SmartDashboard/Right Drive Power', (key, value)=> {
+    ui.rightDrivePowa.innerHTML = '' + Math.round(value * 100);
 });
 
 // Timer
@@ -93,7 +102,7 @@ NetworkTables.addKeyListener('/robot/time', (key, value) => {
 });
 
 // Elevator diagram
-NetworkTables.addKeyListener('/SmartDashboard/elevator', (key, value) => {
+NetworkTables.addKeyListener('/SmartDashboard/Lift position', (key, value) => {
     var armAngle = value * 3 / 20 - 45;
     // Rotate the arm in diagram to match real arm
     ui.robotDiagram.arm.style.transform = `rotate(${armAngle}deg)`;
@@ -200,6 +209,11 @@ ui.gyro.container.onclick = function() {
     ui.gyro.offset = ui.gyro.val;
     // Trigger the gyro to recalculate value.
     updateGyro('/SmartDashboard/drive/navx/yaw', ui.gyro.val);
+};
+
+// Reset camera feed
+ui.camera.onclick = function() {
+    ui.camera.src = "http://10.9.67.2:1181/?action=stream";
 };
 
 // Update NetworkTables when autonomous selector is changed
